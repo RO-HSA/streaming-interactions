@@ -3,13 +3,16 @@
   "displayName": "Streaming interactions",
   "version": "0.0.1",
   "description": "Adds a comment section on streamings for interactions",
-  "author": "Plasmo Corp. <foss@plasmo.com>",
+  "author": "Robert Santos <robertdahora@gmail.com>",
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
     "package": "plasmo package"
   },
   "dependencies": {
+    "@plasmohq/messaging": "^0.6.2",
+    "@plasmohq/storage": "^1.11.0",
+    "@supabase/supabase-js": "^2.44.3",
     "lucide-react": "^0.403.0",
     "plasmo": "0.88.0",
     "react": "18.2.0",
@@ -21,12 +24,18 @@
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "disqus-react": "^1.1.5",
     "prettier": "3.2.4",
+    "prop-types": "^15.8.1",
     "typescript": "5.3.3"
   },
   "manifest": {
+    "permissions": [
+      "activeTab"
+    ],
     "host_permissions": [
       "https://*/*"
-    ]
+    ],
+    "key": "$CRX_KEY"
   }
 }
