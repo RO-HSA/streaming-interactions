@@ -1,17 +1,15 @@
+import { usePopup } from "@/hooks/usePopup"
 import { registerFormSchema } from "@/schemas/form"
 import { supabase } from "@/services/supabase"
+import { Spinner } from "@chakra-ui/react"
 import { ErrorMessage } from "@hookform/error-message"
 import { zodResolver } from "@hookform/resolvers/zod"
-import type { User } from "@supabase/supabase-js"
 import picturePlaceholder from "data-base64:../../assets/profile-picture.jpg"
 import { Pencil } from "lucide-react"
 import { useState, type FormEvent } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { toast } from "react-toastify"
 import { z } from "zod"
-
-import { Storage } from "@plasmohq/storage"
-import { useStorage } from "@plasmohq/storage/hook"
 
 import * as style from "./Register.module.css"
 import Button from "./UI/Button"
@@ -20,8 +18,11 @@ import Input from "./UI/Input"
 
 const Register = () => {
   const [avatar, setAvatar] = useState(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   type RegisterFormSchema = z.infer<typeof registerFormSchema>
+
+  const { setAuthType } = usePopup()
 
   const { register, formState, handleSubmit, getValues } =
     useForm<RegisterFormSchema>({
@@ -31,9 +32,8 @@ const Register = () => {
 
   const handleEmailRegister: SubmitHandler<RegisterFormSchema> = async () => {
     const avatarPathName = `${getValues("email")}-${getValues("avatar")[0].name}`
-    const {
-      data: {}
-    } = await supabase.storage
+
+    await supabase.storage
       .from("users_avatar")
       .upload(avatarPathName, getValues("avatar")[0])
 
@@ -41,7 +41,7 @@ const Register = () => {
       data: { publicUrl }
     } = supabase.storage.from("users_avatar").getPublicUrl(avatarPathName)
 
-    const { error } = await supabase.auth.signUp({
+    const { error, data } = await supabase.auth.signUp({
       email: getValues("email"),
       password: getValues("password"),
       options: {
@@ -52,9 +52,19 @@ const Register = () => {
       }
     })
 
+    if (!data) {
+      setIsLoading(true)
+    } else {
+      setIsLoading(false)
+    }
+
     if (error) {
       toast.error(error.message)
+      return
     }
+
+    toast.success("Account created successfully")
+    setAuthType("LOGIN")
   }
 
   const handleImageChange = (event: FormEvent<HTMLInputElement>) => {
@@ -146,6 +156,7 @@ const Register = () => {
           />
         </div>
         <Button type="submit" className={style.submitBtn}>
+          {isLoading && <Spinner color="#fcfcfc" />}
           Register
         </Button>
       </form>
