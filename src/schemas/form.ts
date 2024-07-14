@@ -4,15 +4,18 @@ import { z } from "zod"
 const passRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/
 const MAX_FILE_SIZE = 1024 * 1024 * 5
 
+const fileSizeLimit = (file: FileList) => {
+  if (!file[0]) return true
+
+  return file[0]?.size <= MAX_FILE_SIZE
+}
+
 export const registerFormSchema = z
   .object({
     avatar: z
-      .any()
+      .instanceof(FileList)
       .optional()
-      .refine(
-        (file: File) => file?.[0]?.size <= MAX_FILE_SIZE,
-        "Max image size is 5MB"
-      ),
+      .refine(fileSizeLimit, "Max image size is 5MB"),
     username: z.string().min(1, "Username required"),
     email: z.string().min(1, "E-mail required").email("E-mail invalid"),
     password: z
@@ -33,3 +36,8 @@ export const registerFormSchema = z
       })
     }
   })
+
+export const loginFormSchema = z.object({
+  email: z.string().min(1, "E-mail required").email("E-mail invalid"),
+  password: z.string().min(1, "Please enter your password")
+})
