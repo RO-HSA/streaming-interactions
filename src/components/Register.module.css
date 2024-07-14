@@ -6,9 +6,11 @@
 }
 
 .avatarContainer {
+  display: flex;
   position: relative;
   cursor: pointer;
   width: 120px;
+  justify-content: center;
 }
 
 .avatar {
@@ -27,8 +29,8 @@
   justify-content: center;
   align-items: center;
   background-color: var(--si-primary);
-  right: 26px;
-  bottom: 4px;
+  right: 18px;
+  bottom: -6px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
