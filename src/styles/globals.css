@@ -1,8 +1,25 @@
 :root {
-  --si-bg: #23252b;
-  --si-element-bg: #17171a;
-  --si-border: #767676;
-  --si-text: #fcfcfc;
-  --si-primary: #954ef2;
-  --si-error: #ff0000;
+  --si-amethyst-50: #f7f3ff;
+  --si-amethyst-100: #f0e9fe;
+  --si-amethyst-200: #e2d7fd;
+  --si-amethyst-300: #ceb6fc;
+  --si-amethyst-400: #b68df8;
+  --si-amethyst-500: #954ef2;
+  --si-amethyst-600: #933dea;
+  --si-amethyst-700: #842bd6;
+  --si-amethyst-800: #6e24b3;
+  --si-amethyst-900: #5b1f93;
+  --si-amethyst-950: #381263;
+  --si-gray-50: #faf9fa;
+  --si-gray-100: #f0eef1;
+  --si-gray-200: #dcd7df;
+  --si-gray-300: #bdb6c4;
+  --si-gray-400: #a99fb2;
+  --si-gray-500: #95889f;
+  --si-gray-600: #81728d;
+  --si-gray-700: #6c6077;
+  --si-gray-800: #584d60;
+  --si-gray-900: #433b49;
+  --si-gray-950: #2e2933;
+  --si-error: #f4001a;
 }
