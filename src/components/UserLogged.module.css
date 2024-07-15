@@ -1,0 +1,31 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.welcomeMessage {
+  color: var(--si-amethyst-50);
+  font-size: 22px;
+  font-weight: bold;
+  justify-self: center;
+}
+
+.welcomeMessage span {
+  color: var(--si-amethyst-400);
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  padding: 8px 0;
+  width: 100%;
+  height: 36px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: var(--si-amethyst-600) !important;
+  transition: background-color 0.2s ease-in-out;
+}
