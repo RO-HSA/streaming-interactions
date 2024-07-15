@@ -1,13 +1,13 @@
 .input {
-  background-color: transparent;
-  color: var(--si-text);
-  font-size: 12px;
-  border: 1px solid var(--si-primary);
-  padding: 8px;
+  color: var(--si-gray-600);
+  background-color: var(--si-gray-900);
+  font-size: 14px;
+  border: 2px solid var(--si-gray-900);
+  padding: 4px;
   border-radius: 4px;
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--si-text);
+  border-color: var(--si-amethyst-600);
 }

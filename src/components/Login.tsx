@@ -17,6 +17,7 @@ import * as style from "./Login.module.css"
 import Button from "./UI/Button"
 import Error from "./UI/Error"
 import Input from "./UI/Input"
+import Label from "./UI/Label"
 
 const Login = () => {
   const [user, setUser] = useStorage<User>({
@@ -64,7 +65,7 @@ const Login = () => {
         className={style.loginForm}
         onSubmit={handleSubmit(handleEmailLogin)}>
         <div className={style.inputs}>
-          <label htmlFor="email">E-mail</label>
+          <Label htmlFor="email">E-mail</Label>
           <Input id="email" type="text" {...register("email")} />
           <ErrorMessage
             errors={formState.errors}
@@ -73,19 +74,30 @@ const Login = () => {
           />
         </div>
         <div className={style.inputs}>
-          <label htmlFor="password">Password</label>
+          <Label htmlFor="password">Password</Label>
           <Input id="password" type="password" {...register("password")} />
           <ErrorMessage
             errors={formState.errors}
             name="password"
             render={({ message }) => <Error message={message} />}
           />
+          <span
+            className={style.forgot}
+            onClick={() => setAuthType("RECOVERY")}>
+            forgot your password?
+          </span>
         </div>
         <Button type="submit" className={style.submitBtn}>
           {isLoading && <Spinner marginRight={2} size="xs" color="#fcfcfc" />}
           Login
         </Button>
       </form>
+      <div className={style.registerAnchorWrapper}>
+        <p className={style.registerAnchor}>
+          Don't have an account?{" "}
+          <span onClick={() => setAuthType("REGISTER")}>sign up</span>
+        </p>
+      </div>
     </div>
   )
 }

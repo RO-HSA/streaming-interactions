@@ -4,6 +4,7 @@ import { supabase } from "@/services/supabase"
 import { Spinner } from "@chakra-ui/react"
 import { ErrorMessage } from "@hookform/error-message"
 import { zodResolver } from "@hookform/resolvers/zod"
+import type { AuthError } from "@supabase/supabase-js"
 import picturePlaceholder from "data-base64:../../assets/profile-picture.jpg"
 import { Pencil } from "lucide-react"
 import { useState, type FormEvent } from "react"
@@ -15,6 +16,7 @@ import * as style from "./Register.module.css"
 import Button from "./UI/Button"
 import Error from "./UI/Error"
 import Input from "./UI/Input"
+import Label from "./UI/Label"
 
 const Register = () => {
   const [avatar, setAvatar] = useState(null)
@@ -41,30 +43,25 @@ const Register = () => {
       data: { publicUrl }
     } = supabase.storage.from("users_avatar").getPublicUrl(avatarPathName)
 
-    const { error, data } = await supabase.auth.signUp({
-      email: getValues("email"),
-      password: getValues("password"),
-      options: {
-        data: {
-          username: getValues("username"),
-          avatar: publicUrl
-        }
-      }
-    })
-
-    if (!data) {
+    try {
       setIsLoading(true)
-    } else {
-      setIsLoading(false)
-    }
-
-    if (error) {
+      await supabase.auth.signUp({
+        email: getValues("email"),
+        password: getValues("password"),
+        options: {
+          data: {
+            username: getValues("username"),
+            avatar: publicUrl
+          }
+        }
+      })
+    } catch (error) {
       toast.error(error.message)
-      return
+    } finally {
+      setIsLoading(false)
+      toast.success("Account created successfully")
+      setAuthType("LOGIN")
     }
-
-    toast.success("Account created successfully")
-    setAuthType("LOGIN")
   }
 
   const handleImageChange = (event: FormEvent<HTMLInputElement>) => {
@@ -91,16 +88,20 @@ const Register = () => {
             flexDirection: "column",
             gap: "4px"
           }}>
-          <label htmlFor="avatar" className={style.avatarContainer}>
+          <Label htmlFor="avatar" className={style.avatarContainer}>
             <img
               src={avatar || picturePlaceholder}
               alt="avatar"
               className={style.avatar}
             />
             <div className={style.editIcon}>
-              <Pencil size={12} color="var(--si-bg)" className={style.pencil} />
+              <Pencil
+                size={12}
+                color="var(--si-amethyst-50)"
+                className={style.pencil}
+              />
             </div>
-          </label>
+          </Label>
           <input
             id="avatar"
             type="file"
@@ -116,7 +117,7 @@ const Register = () => {
           />
         </div>
         <div className={style.inputs}>
-          <label htmlFor="email">E-mail</label>
+          <Label htmlFor="email">E-mail</Label>
           <Input id="email" type="text" {...register("email")} />
           <ErrorMessage
             errors={formState.errors}
@@ -125,7 +126,7 @@ const Register = () => {
           />
         </div>
         <div className={style.inputs}>
-          <label htmlFor="username">Username</label>
+          <Label htmlFor="username">Username</Label>
           <Input id="username" type="text" {...register("username")} />
           <ErrorMessage
             errors={formState.errors}
@@ -134,7 +135,7 @@ const Register = () => {
           />
         </div>
         <div className={style.inputs}>
-          <label htmlFor="password">Password</label>
+          <Label htmlFor="password">Password</Label>
           <Input id="password" type="password" {...register("password")} />
           <ErrorMessage
             errors={formState.errors}
@@ -143,7 +144,7 @@ const Register = () => {
           />
         </div>
         <div className={style.inputs}>
-          <label htmlFor="confirmPassword">Confirm password</label>
+          <Label htmlFor="confirmPassword">Confirm password</Label>
           <Input
             id="confirmPassword"
             type="password"
@@ -160,6 +161,12 @@ const Register = () => {
           Register
         </Button>
       </form>
+      <div className={style.loginAnchorWrapper}>
+        <p className={style.loginAnchor}>
+          Already have an account?{" "}
+          <span onClick={() => setAuthType("LOGIN")}>log in</span>
+        </p>
+      </div>
     </div>
   )
 }

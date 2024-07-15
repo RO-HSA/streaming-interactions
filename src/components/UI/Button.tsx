@@ -10,10 +10,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         style={{
           border: "none",
-          borderRadius: "4px",
+          borderRadius: "6px",
           cursor: "pointer",
-          backgroundColor: "var(--si-primary)",
-          color: "var(--si-text)"
+          backgroundColor: "var(--si-amethyst-500)",
+          color: "var(--si-amethyst-50)",
+          fontSize: "16px",
+          fontWeight: "bold"
         }}
         className={className}
         ref={ref}
