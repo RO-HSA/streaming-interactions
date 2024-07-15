@@ -1,0 +1,57 @@
+html {
+  background-color: white;
+  padding: 2px;
+}
+
+body {
+  font-family: "Geist";
+  background-color: var(--si-gray-950);
+  width: 340px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 24px 32px;
+  min-height: 398px;
+  height: 100%;
+  justify-content: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 26px;
+  justify-self: center;
+}
+
+.brand h1 {
+  color: var(--si-amethyst-50);
+  font-size: 22px;
+  font-weight: bold;
+  line-height: normal;
+}
+
+.content {
+  display: grid;
+  align-items: center;
+}
+
+.kofi {
+  display: flex;
+  justify-content: center;
+}
+
+.kofi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--si-gray-600);
+  font-size: 12px;
+  line-height: normal;
+  margin-top: 34px;
+}

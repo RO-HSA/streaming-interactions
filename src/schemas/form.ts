@@ -2,7 +2,7 @@ import { supabase } from "@/services/supabase"
 import { z } from "zod"
 
 const passRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/
-const MAX_FILE_SIZE = 1024 * 1024 * 5
+const MAX_FILE_SIZE = 1024 * 128
 
 const fileSizeLimit = (file: FileList) => {
   if (!file[0]) return true
