@@ -40,27 +40,22 @@ const PasswordRecovery = () => {
     })
 
   const handleRecovery: SubmitHandler<RecoveryFormSchema> = async () => {
-    // const { data } = await supabase.from("authors").select("*")
-    // console.log(data)
-    const { error, data } = await supabase.auth.resetPasswordForEmail(
+    setIsLoading(true)
+    const { error } = await supabase.auth.resetPasswordForEmail(
       getValues("email")
     )
 
-    console.log(error)
+    if (error) {
+      toast.error(error.message)
+      setIsLoading(false)
+    }
 
-    // if (!data.user) {
-    //   setIsLoading(true)
-    // }
+    toast.success(
+      "If the email exists, you will receive an email to recover your account"
+    )
 
-    // if (error) {
-    //   toast.error(error.message)
-    // }
-
-    // setIsLoading(false)
-
-    // if (data.user) {
-    //   setAuthType("LOGGED")
-    // }
+    setIsLoading(false)
+    setAuthType("LOGIN")
   }
 
   return (

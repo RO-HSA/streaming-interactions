@@ -33,6 +33,7 @@ const Register = () => {
     })
 
   const handleEmailRegister: SubmitHandler<RegisterFormSchema> = async () => {
+    setIsLoading(true)
     const avatarPathName = `${getValues("email")}-${getValues("avatar")[0].name}`
 
     await supabase.storage
@@ -43,24 +44,31 @@ const Register = () => {
       data: { publicUrl }
     } = supabase.storage.from("users_avatar").getPublicUrl(avatarPathName)
 
-    try {
-      setIsLoading(true)
-      await supabase.auth.signUp({
-        email: getValues("email"),
-        password: getValues("password"),
-        options: {
-          data: {
-            username: getValues("username"),
-            avatar: publicUrl
-          }
+    const { error, data } = await supabase.auth.signUp({
+      email: getValues("email"),
+      password: getValues("password"),
+      options: {
+        data: {
+          username: getValues("username"),
+          avatar: publicUrl
         }
-      })
-    } catch (error) {
+      }
+    })
+
+    if (error) {
       toast.error(error.message)
-    } finally {
       setIsLoading(false)
+    }
+
+    if (data.user.identities.length === 0) {
+      toast.error("Email already in use")
+      setIsLoading(false)
+    }
+
+    if (data.user.identities.length > 0) {
       toast.success("Account created successfully")
       setAuthType("LOGIN")
+      setIsLoading(false)
     }
   }
 
