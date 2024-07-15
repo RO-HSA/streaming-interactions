@@ -41,3 +41,7 @@ export const loginFormSchema = z.object({
   email: z.string().min(1, "E-mail required").email("E-mail invalid"),
   password: z.string().min(1, "Please enter your password")
 })
+
+export const recoveryFormSchema = z.object({
+  email: z.string().min(1, "E-mail required").email("E-mail invalid")
+})
