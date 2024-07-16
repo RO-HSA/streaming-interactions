@@ -20,7 +20,7 @@ import Input from "./UI/Input"
 import Label from "./UI/Label"
 
 const Login = () => {
-  const [user, setUser] = useStorage<User>({
+  const [_, setUser] = useStorage<User>({
     key: "user",
     instance: new Storage({
       area: "local"
@@ -39,6 +39,7 @@ const Login = () => {
     })
 
   const handleEmailLogin: SubmitHandler<LoginFormSchema> = async () => {
+    setIsLoading(true)
     const { error, data } = await supabase.auth.signInWithPassword({
       email: getValues("email"),
       password: getValues("password")
@@ -52,11 +53,13 @@ const Login = () => {
       toast.error(error.message)
     }
 
-    setIsLoading(false)
-
     if (data.user) {
+      setUser(data.user)
+      setIsLoading(false)
       setAuthType("LOGGED")
     }
+
+    setIsLoading(false)
   }
 
   return (
@@ -87,8 +90,8 @@ const Login = () => {
             forgot your password?
           </span>
         </div>
-        <Button type="submit" className={style.submitBtn}>
-          {isLoading && <Spinner marginRight={2} size="xs" color="#fcfcfc" />}
+        <Button type="submit" disabled={isLoading} className={style.submitBtn}>
+          {isLoading && <Spinner marginRight={2} size="xs" color="#f7f3ff" />}
           Login
         </Button>
       </form>

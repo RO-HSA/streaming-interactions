@@ -20,13 +20,6 @@ import Input from "./UI/Input"
 import Label from "./UI/Label"
 
 const PasswordRecovery = () => {
-  const [user, setUser] = useStorage<User>({
-    key: "user",
-    instance: new Storage({
-      area: "local"
-    })
-  })
-
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const { setAuthType } = usePopup()
@@ -70,8 +63,8 @@ const PasswordRecovery = () => {
             render={({ message }) => <Error message={message} />}
           />
         </div>
-        <Button type="submit" className={style.submitBtn}>
-          {isLoading && <Spinner marginRight={2} size="xs" color="#fcfcfc" />}
+        <Button type="submit" disabled={isLoading} className={style.submitBtn}>
+          {isLoading && <Spinner marginRight={2} size="xs" color="#f7f3ff" />}
           Recover account
         </Button>
       </form>

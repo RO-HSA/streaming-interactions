@@ -4,8 +4,7 @@ import { supabase } from "@/services/supabase"
 import { Spinner } from "@chakra-ui/react"
 import { ErrorMessage } from "@hookform/error-message"
 import { zodResolver } from "@hookform/resolvers/zod"
-import type { AuthError } from "@supabase/supabase-js"
-import picturePlaceholder from "data-base64:../../assets/profile-picture.jpg"
+import picturePlaceholder from "data-base64:../../assets/images/profile-picture.jpg"
 import { Pencil } from "lucide-react"
 import { useState, type FormEvent } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
@@ -164,8 +163,8 @@ const Register = () => {
             render={({ message }) => <Error message={message} />}
           />
         </div>
-        <Button type="submit" className={style.submitBtn}>
-          {isLoading && <Spinner color="#fcfcfc" />}
+        <Button type="submit" disabled={isLoading} className={style.submitBtn}>
+          {isLoading && <Spinner color="#f7f3ff" />}
           Register
         </Button>
       </form>
