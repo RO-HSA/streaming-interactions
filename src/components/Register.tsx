@@ -19,7 +19,7 @@ import Label from "./UI/Label"
 
 const Register = () => {
   const [avatar, setAvatar] = useState(null)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   type RegisterFormSchema = z.infer<typeof registerFormSchema>
 
