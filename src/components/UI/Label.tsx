@@ -6,10 +6,13 @@ interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   children: ReactNode
 }
 
-const Label = forwardRef<HTMLInputElement, LabelProps>(
-  ({ children, className, ...props }) => {
+const Label = forwardRef<HTMLLabelElement, LabelProps>(
+  ({ children, className, ...props }, ref) => {
     return (
-      <label className={[style.label, className].join(" ")} {...props}>
+      <label
+        className={[style.label, className].join(" ")}
+        ref={ref}
+        {...props}>
         {children}
       </label>
     )
