@@ -1,7 +1,7 @@
 import Register from "@/components/Register"
 import { supabase } from "@/services/supabase"
 import type { User } from "@supabase/supabase-js"
-import logo from "data-base64:../../assets/icon.svg"
+import logo from "data-base64:../../assets/images/icon.svg"
 import { useEffect } from "react"
 import { toast, ToastContainer } from "react-toastify"
 
@@ -92,7 +92,7 @@ const Popup = () => {
           )}
         </div>
         <p className={style.kofi}>
-          Want to support my work?{" "}
+          Want to support my work?
           <a href="https://ko-fi.com/H2H810IYZG" target="_blank">
             <img
               height="36"
