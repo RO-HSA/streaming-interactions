@@ -19,7 +19,7 @@ import Label from "./UI/Label"
 
 const Register = () => {
   const [avatar, setAvatar] = useState(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   type RegisterFormSchema = z.infer<typeof registerFormSchema>
 
@@ -164,7 +164,7 @@ const Register = () => {
           />
         </div>
         <Button type="submit" disabled={isLoading} className={style.submitBtn}>
-          {isLoading && <Spinner color="#f7f3ff" />}
+          {isLoading && <Spinner marginRight={2} size="sm" color="#f7f3ff" />}
           Register
         </Button>
       </form>

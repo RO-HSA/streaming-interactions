@@ -91,7 +91,7 @@ const Login = () => {
           </span>
         </div>
         <Button type="submit" disabled={isLoading} className={style.submitBtn}>
-          {isLoading && <Spinner marginRight={2} size="xs" color="#f7f3ff" />}
+          {isLoading && <Spinner marginRight={2} size="sm" color="#f7f3ff" />}
           Login
         </Button>
       </form>

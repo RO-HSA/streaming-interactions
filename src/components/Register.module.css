@@ -45,7 +45,7 @@
 .submitBtn {
   display: flex;
   justify-content: center;
-  align-self: center;
+  align-items: center;
   padding: 8px 0;
   margin-top: 4px;
   width: 100%;
@@ -56,6 +56,11 @@
 .submitBtn:hover {
   background-color: var(--si-amethyst-600) !important;
   transition: background-color 0.2s ease-in-out;
+}
+
+.submitBtn:disabled {
+  background-color: var(--si-gray-400) !important;
+  cursor: wait !important;
 }
 
 .loginAnchorWrapper {
