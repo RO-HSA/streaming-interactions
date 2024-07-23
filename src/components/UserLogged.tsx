@@ -4,6 +4,9 @@ import { supabase } from "@/services/supabase"
 import type { User } from "@supabase/supabase-js"
 import type { FC } from "react"
 
+import { Storage } from "@plasmohq/storage"
+import { useStorage } from "@plasmohq/storage/hook"
+
 import * as style from "./UserLogged.module.css"
 
 interface UserLoggedProps {
@@ -12,9 +15,16 @@ interface UserLoggedProps {
 
 const UserLogged: FC<UserLoggedProps> = ({ user }) => {
   const { setAuthType } = usePopup()
+  const [_, setUser] = useStorage<User>({
+    key: "user",
+    instance: new Storage({
+      area: "local"
+    })
+  })
 
-  const logout = () => {
-    supabase.auth.signOut()
+  const logout = async () => {
+    await supabase.auth.signOut()
+    setUser(null)
     setAuthType("LOGIN")
   }
 
