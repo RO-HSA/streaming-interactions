@@ -1,5 +1,7 @@
 export {}
 
-chrome.action.onClicked.addListener(() => {
-  chrome.runtime.openOptionsPage()
+chrome.tabs.onUpdated.addListener((tabId, tab) => {
+  if (tab.url) {
+    chrome.tabs.sendMessage(tabId, { url: tab.url })
+  }
 })
