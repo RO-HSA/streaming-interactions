@@ -4,14 +4,10 @@ import { supabase } from "@/services/supabase"
 import { Spinner } from "@chakra-ui/react"
 import { ErrorMessage } from "@hookform/error-message"
 import { zodResolver } from "@hookform/resolvers/zod"
-import type { User } from "@supabase/supabase-js"
 import { useState } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { toast } from "react-toastify"
 import { z } from "zod"
-
-import { Storage } from "@plasmohq/storage"
-import { useStorage } from "@plasmohq/storage/hook"
 
 import * as style from "./Login.module.css"
 import Button from "./UI/Button"
@@ -43,7 +39,7 @@ const PasswordRecovery = () => {
       setIsLoading(false)
     }
 
-    toast.success(
+    toast.info(
       "If the email exists, you will receive an email to recover your account"
     )
 
