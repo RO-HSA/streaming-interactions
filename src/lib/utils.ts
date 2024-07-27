@@ -1,6 +1,6 @@
 import { toZonedTime } from "date-fns-tz"
 
-export const formatDate = (date: string) => {
+export const formatDate = (date: string, isEdited: boolean) => {
   const HOUR_IN_MILISECONDS = 3600000
 
   let dateFormatted: string
@@ -36,13 +36,13 @@ export const formatDate = (date: string) => {
     }
   }
 
-  if (dateDifferenceInHours >= 24 && dateDifferenceInHours < 48) {
+  if (dateDifferenceInHours >= 24) {
     if (dateDifferenceInHours >= 48) {
-      dateFormatted = `${Math.floor(dateDifferenceInHours)} days ago`
+      dateFormatted = `${Math.floor(dateDifferenceInHours / 24)} days ago`
     } else {
       dateFormatted = "1 day ago"
     }
   }
 
-  return dateFormatted
+  return isEdited ? `${dateFormatted} (edited)` : dateFormatted
 }
