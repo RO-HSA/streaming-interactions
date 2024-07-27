@@ -14,6 +14,7 @@ export type Database = {
           comment: string
           created_at: string
           id: string
+          is_edited: boolean | null
           url: string
           user_avatar: string | null
           user_id: string
@@ -23,6 +24,7 @@ export type Database = {
           comment: string
           created_at?: string
           id?: string
+          is_edited?: boolean | null
           url: string
           user_avatar?: string | null
           user_id: string
@@ -32,6 +34,7 @@ export type Database = {
           comment?: string
           created_at?: string
           id?: string
+          is_edited?: boolean | null
           url?: string
           user_avatar?: string | null
           user_id?: string
@@ -51,7 +54,8 @@ export type Database = {
         Row: {
           comment: string | null
           created_at: string
-          id: number
+          id: string
+          is_edited: boolean | null
           parent_id: string
           user_avatar: string | null
           user_id: string | null
@@ -60,7 +64,8 @@ export type Database = {
         Insert: {
           comment?: string | null
           created_at?: string
-          id?: number
+          id?: string
+          is_edited?: boolean | null
           parent_id: string
           user_avatar?: string | null
           user_id?: string | null
@@ -69,7 +74,8 @@ export type Database = {
         Update: {
           comment?: string | null
           created_at?: string
-          id?: number
+          id?: string
+          is_edited?: boolean | null
           parent_id?: string
           user_avatar?: string | null
           user_id?: string | null
