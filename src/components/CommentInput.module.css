@@ -1,0 +1,93 @@
+.commentsForm {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 8px;
+  align-self: end;
+  align-items: center;
+}
+
+.commentInput {
+  color: var(--si-amethyst-50);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 8px 12px 8px 12px;
+  border-radius: 4px;
+  background-color: color-mix(in srgb, var(--si-gray-900) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--si-amethyst-400) 25%, transparent);
+  box-shadow: none;
+  resize: none;
+  height: 52px;
+  max-height: 80px;
+  transition: height 0.2s ease-in-out;
+}
+
+.commentInput::-webkit-scrollbar {
+  width: 4px;
+}
+
+.commentInput::-webkit-scrollbar-track {
+  background: none;
+}
+
+.commentInput::-webkit-scrollbar-thumb {
+  background: var(--si-gray-600);
+  border-radius: 8px;
+}
+
+.commentInput::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--si-gray-600) 90%, transparent);
+}
+
+.commentInput:focus {
+  height: 80px;
+  outline: none;
+  box-shadow: none !important;
+  border: 1px solid color-mix(in srgb, var(--si-amethyst-400) 25%, transparent) !important;
+}
+
+.commentInput:hover {
+  box-shadow: none !important;
+  border: 1px solid color-mix(in srgb, var(--si-amethyst-400) 25%, transparent) !important;
+}
+
+.submitBtn {
+  color: var(--si-amethyst-50);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  background-color: color-mix(in srgb, var(--si-amethyst-500) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--si-amethyst-500) 10%, transparent);
+  padding: 8px 12px;
+  border-radius: 6px;
+  height: 100%;
+  transition: height 0.2s ease-in-out;
+}
+
+.replyEditBtn {
+  color: var(--si-gray-50);
+  font-size: 12px;
+  font-weight: 500;
+  background-color: color-mix(in srgb, var(--si-amethyst-500) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--si-amethyst-500) 10%, transparent);
+  backdrop-filter: blur(4.8px);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.cancelBtn {
+  color: var(--si-gray-600);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.submitBtn:disabled {
+  height: 0;
+  display: none;
+  cursor: default;
+}

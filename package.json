@@ -60,7 +60,8 @@
       }
     ],
     "permissions": [
-      "tabs"
+      "tabs",
+      "i18n"
     ],
     "host_permissions": [
       "https://*/*"
