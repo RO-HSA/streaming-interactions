@@ -4,7 +4,7 @@ import { supabase } from "@/services/supabase"
 import { Spinner } from "@chakra-ui/react"
 import { ErrorMessage } from "@hookform/error-message"
 import { zodResolver } from "@hookform/resolvers/zod"
-import picturePlaceholder from "data-base64:../../assets/images/profile-picture.jpg"
+import picturePlaceholder from "data-base64:../../assets/images/profile-picture.svg"
 import { Pencil } from "lucide-react"
 import { useState, type FormEvent } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
@@ -43,13 +43,17 @@ const Register = () => {
       data: { publicUrl }
     } = supabase.storage.from("users_avatar").getPublicUrl(avatarPathName)
 
+    const userLang = chrome.i18n.getUILanguage()
+
     const { error, data } = await supabase.auth.signUp({
       email: getValues("email"),
       password: getValues("password"),
       options: {
         data: {
           username: getValues("username"),
-          avatar: publicUrl
+          avatar: publicUrl,
+          ui_lang: userLang,
+          comment_lang: userLang
         }
       }
     })
