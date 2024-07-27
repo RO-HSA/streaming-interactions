@@ -1,0 +1,101 @@
+.sidebar {
+  font-family: "Geist";
+  position: fixed;
+  top: 0;
+  right: 0;
+  max-width: 580px;
+  width: 0;
+  z-index: 10000;
+  background-color: color-mix(in srgb, var(--si-gray-950) 95%, transparent);
+  border-left: 1px solid
+    color-mix(in srgb, var(--si-amethyst-400) 25%, transparent);
+  padding: 0;
+  height: 100vh;
+  transition:
+    width 0.2s ease-in-out,
+    max-width 0.2s ease-in-out,
+    padding 0.2s ease-in-out;
+}
+
+.open {
+  max-width: 580px;
+  width: 100%;
+  padding: 32px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  backdrop-filter: blur(12.5px);
+  -webkit-backdrop-filter: blur(12.5px);
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: calc(100vh - 167px);
+  overflow-y: scroll;
+  padding-right: 4px;
+}
+
+.commentsList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.commentsList::-webkit-scrollbar-track {
+  background: none;
+}
+
+.commentsList::-webkit-scrollbar-thumb {
+  background: var(--si-gray-600);
+  border-radius: 8px;
+}
+
+.commentsList::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--si-gray-600) 90%, transparent);
+}
+
+.submitBtn {
+  color: var(--si-amethyst-50);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  background-color: color-mix(in srgb, var(--si-amethyst-500) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--si-amethyst-500) 10%, transparent);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.submitBtn:disabled {
+  visibility: hidden;
+  cursor: default;
+}
+
+.menu {
+  position: absolute;
+  top: 64;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--si-gray-950);
+  width: 32px;
+  height: 32px;
+  border: 1px solid;
+  border-right: 0;
+  border-color: color-mix(in srgb, var(--si-amethyst-400) 25%, transparent);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 640px) {
+  .menu {
+    left: -32px;
+  }
+}
