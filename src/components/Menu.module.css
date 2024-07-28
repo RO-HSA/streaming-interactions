@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  color: var(--si-amethyst-50);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.menuItems {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-radius: 4px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  color: var(--si-amethyst-50);
+  padding: 6px 8px;
+  height: 42px;
+  border-radius: 4px;
+  max-width: 188px;
+  gap: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.item span {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.selected {
+  color: var(--si-amethyst-200);
+  background-color: var(--si-gray-900);
+}
