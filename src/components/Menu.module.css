@@ -18,21 +18,26 @@
   border-radius: 4px;
 }
 
-.item {
+.itemBtn {
   display: flex;
   align-items: center;
-  color: var(--si-amethyst-50);
   padding: 6px 8px;
   height: 42px;
   border-radius: 4px;
   max-width: 188px;
-  gap: 8px;
   border: none;
   background-color: transparent;
   cursor: pointer;
 }
 
-.item span {
+.itemLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--si-amethyst-50);
+}
+
+.itemLink span {
   font-size: 24px;
   font-weight: 400;
   line-height: normal;

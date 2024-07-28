@@ -10,16 +10,23 @@ const Menu = () => {
     <div className={style.wrapper}>
       <h2 className={style.title}>Settings</h2>
       <div className={style.menuItems}>
-        {menuItems.map(({ title, icon: Icon }, index) => (
+        {menuItems.map(({ href, title, icon: Icon }, index) => (
           <button
             className={[
-              style.item,
+              style.itemBtn,
               selectedItem === index ? style.selected : ""
             ].join(" ")}
             onClick={() => setSelectedItem(index)}
             key={index}>
-            <Icon size={28} />
-            <span>{title}</span>
+            <a
+              href={href}
+              className={[
+                style.itemLink,
+                selectedItem === index ? style.selected : ""
+              ].join(" ")}>
+              <Icon size={28} />
+              <span>{title}</span>
+            </a>
           </button>
         ))}
       </div>
