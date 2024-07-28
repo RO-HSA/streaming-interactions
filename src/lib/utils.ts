@@ -49,9 +49,10 @@ export const formatDate = (date: string, isEdited: boolean) => {
   return isEdited ? `${dateFormatted} (edited)` : dateFormatted
 }
 
-const { setAvatar } = useOptions()
-
-export const handleImageChange = (event: FormEvent<HTMLInputElement>) => {
+export const handleImageChange = (
+  event: FormEvent<HTMLInputElement>,
+  setAvatar: Function
+) => {
   const file = event.currentTarget.files[0]
 
   if (file) {

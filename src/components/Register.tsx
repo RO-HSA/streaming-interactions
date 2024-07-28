@@ -21,10 +21,10 @@ import Label from "./UI/Label"
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const { avatar } = useOptions()
 
   type RegisterFormSchema = z.infer<typeof registerFormSchema>
 
+  const { avatar, setAvatar } = useOptions()
   const { setAuthType } = usePopup()
 
   const { register, formState, handleSubmit, getValues } =
@@ -107,7 +107,7 @@ const Register = () => {
             id="avatar"
             type="file"
             accept="image/jpeg, image/jpg, image/png, image/webp"
-            onInput={handleImageChange}
+            onInput={(e) => handleImageChange(e, setAvatar)}
             className={style.avatarInput}
             {...register("avatar")}
           />
