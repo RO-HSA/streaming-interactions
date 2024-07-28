@@ -21,21 +21,6 @@ body {
   justify-content: center;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 26px;
-  justify-self: center;
-}
-
-.brand h1 {
-  color: var(--si-amethyst-50);
-  font-size: 22px;
-  font-weight: bold;
-  line-height: normal;
-}
-
 .content {
   display: grid;
   align-items: center;

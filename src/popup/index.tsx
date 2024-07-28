@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css"
 
 import Login from "@/components/Login"
 import PasswordRecovery from "@/components/PasswordRecovery"
+import Logo from "@/components/UI/Logo"
 import UserLogged from "@/components/UserLogged"
 import { usePopup } from "@/hooks/usePopup"
 import {
@@ -71,14 +72,7 @@ const Popup = () => {
     <ChakraBaseProvider theme={theme} disableGlobalStyle={true}>
       <main className={style.container}>
         {authType !== "REGISTER" && (
-          <div className={style.brand}>
-            <img src={logo} alt="logo" />
-            <h1>
-              Streaming
-              <br />
-              Interactions
-            </h1>
-          </div>
+          <Logo paddingBottom="26px" fontSize="22px" />
         )}
         <div className={style.content}>
           {authType === "LOGGED" ? (
