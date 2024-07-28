@@ -1,4 +1,6 @@
+import { useOptions } from "@/hooks/useOptions"
 import { usePopup } from "@/hooks/usePopup"
+import { handleImageChange } from "@/lib/utils"
 import { registerFormSchema } from "@/schemas/form"
 import { supabase } from "@/services/supabase"
 import { Spinner } from "@chakra-ui/react"
@@ -18,8 +20,8 @@ import Input from "./UI/Input"
 import Label from "./UI/Label"
 
 const Register = () => {
-  const [avatar, setAvatar] = useState(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const { avatar } = useOptions()
 
   type RegisterFormSchema = z.infer<typeof registerFormSchema>
 
@@ -75,18 +77,6 @@ const Register = () => {
     }
   }
 
-  const handleImageChange = (event: FormEvent<HTMLInputElement>) => {
-    const file = event.currentTarget.files[0]
-
-    if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setAvatar(reader.result)
-      }
-      reader.readAsDataURL(file)
-    }
-  }
-
   return (
     <div>
       <form
@@ -101,7 +91,7 @@ const Register = () => {
           }}>
           <Label htmlFor="avatar" className={style.avatarContainer}>
             <img
-              src={avatar || picturePlaceholder}
+              src={(avatar as string) || picturePlaceholder}
               alt="avatar"
               className={style.avatar}
             />

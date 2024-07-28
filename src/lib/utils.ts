@@ -1,4 +1,6 @@
+import { useOptions } from "@/hooks/useOptions"
 import { toZonedTime } from "date-fns-tz"
+import type { FormEvent } from "react"
 
 export const formatDate = (date: string, isEdited: boolean) => {
   const HOUR_IN_MILISECONDS = 3600000
@@ -45,4 +47,18 @@ export const formatDate = (date: string, isEdited: boolean) => {
   }
 
   return isEdited ? `${dateFormatted} (edited)` : dateFormatted
+}
+
+const { setAvatar } = useOptions()
+
+export const handleImageChange = (event: FormEvent<HTMLInputElement>) => {
+  const file = event.currentTarget.files[0]
+
+  if (file) {
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      setAvatar(reader.result)
+    }
+    reader.readAsDataURL(file)
+  }
 }
