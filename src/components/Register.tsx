@@ -8,7 +8,7 @@ import { ErrorMessage } from "@hookform/error-message"
 import { zodResolver } from "@hookform/resolvers/zod"
 import picturePlaceholder from "data-base64:../../assets/images/profile-picture.svg"
 import { Pencil } from "lucide-react"
-import { useState, type FormEvent } from "react"
+import { useState } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { toast } from "react-toastify"
 import { z } from "zod"
@@ -62,19 +62,18 @@ const Register = () => {
 
     if (error) {
       toast.error(error.message)
-      setIsLoading(false)
     }
 
     if (data.user.identities.length === 0) {
       toast.error("Email already in use")
-      setIsLoading(false)
     }
 
     if (data.user.identities.length > 0) {
       toast.success("Account created successfully")
       setAuthType("LOGIN")
-      setIsLoading(false)
     }
+
+    setIsLoading(false)
   }
 
   return (
