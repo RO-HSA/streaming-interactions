@@ -1,0 +1,12 @@
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: center;
+}
+
+.brand h1 {
+  color: var(--si-amethyst-50);
+  font-weight: bold;
+  line-height: normal;
+}
