@@ -1,4 +1,3 @@
-import { supabase } from "@/services/supabase"
 import { z } from "zod"
 
 const passRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/
@@ -15,7 +14,7 @@ export const registerFormSchema = z
     avatar: z
       .instanceof(FileList)
       .optional()
-      .refine(fileSizeLimit, "Max image size is 5MB"),
+      .refine(fileSizeLimit, "Max image size is 128KB"),
     username: z.string().min(1, "Username required"),
     email: z.string().min(1, "E-mail required").email("E-mail invalid"),
     password: z
@@ -44,4 +43,19 @@ export const loginFormSchema = z.object({
 
 export const recoveryFormSchema = z.object({
   email: z.string().min(1, "E-mail required").email("E-mail invalid")
+})
+
+export const updateAccountFormSchema = z.object({
+  avatar: z
+    .instanceof(FileList)
+    .optional()
+    .refine(fileSizeLimit, "Max image size is 8KB"),
+  username: z.string().min(1, "Username required"),
+  password: z
+    .string()
+    .optional()
+    .refine(
+      (value) => !value || passRegex.test(value),
+      "The password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one special character"
+    )
 })
