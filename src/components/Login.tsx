@@ -1,3 +1,4 @@
+import { useLang } from "@/hooks/useLang"
 import { usePopup } from "@/hooks/usePopup"
 import { loginFormSchema } from "@/schemas/form"
 import { supabase } from "@/services/supabase"
@@ -29,6 +30,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const { setAuthType } = usePopup()
+  const { setUiLang, setCommentLang } = useLang()
 
   type LoginFormSchema = z.infer<typeof loginFormSchema>
 
@@ -55,6 +57,8 @@ const Login = () => {
 
     if (data.user) {
       setUser(data.user)
+      setUiLang(data.user.user_metadata.ui_lang)
+      setCommentLang(data.user.user_metadata.comment_lang)
       setIsLoading(false)
       setAuthType("LOGGED")
     }
