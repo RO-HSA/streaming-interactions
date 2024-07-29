@@ -21,6 +21,8 @@
 .itemBtn {
   display: flex;
   align-items: center;
+  color: var(--si-amethyst-50);
+  gap: 8px;
   padding: 6px 8px;
   height: 42px;
   border-radius: 4px;
@@ -30,14 +32,7 @@
   cursor: pointer;
 }
 
-.itemLink {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--si-amethyst-50);
-}
-
-.itemLink span {
+.itemBtn span {
   font-size: 24px;
   font-weight: 400;
   line-height: normal;

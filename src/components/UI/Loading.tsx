@@ -1,6 +1,6 @@
 import type { FC } from "react"
 
-import styles from "./loading.module.css"
+import * as style from "./Loading.module.css"
 
 interface Props {
   width?: string
@@ -9,8 +9,8 @@ interface Props {
 
 const Loading: FC<Props> = ({ width = "100%", height = "100%" }) => {
   return (
-    <div style={{ width, height }} className={styles.container}>
-      <span className={styles.loader}></span>
+    <div style={{ width, height }} className={style.container}>
+      <span className={style.loader}></span>
     </div>
   )
 }

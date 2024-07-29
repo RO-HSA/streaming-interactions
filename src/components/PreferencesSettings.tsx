@@ -46,7 +46,6 @@ const PreferencesSettings = () => {
   return (
     <>
       <SettingsBox
-        id="#preferences"
         title="Preferences"
         description="Changes your preferences to whatever you wish.">
         <div className={style.inputs}>

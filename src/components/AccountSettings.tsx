@@ -98,7 +98,6 @@ const AccountSettings: FC<AccountSettingsProps> = ({
   return (
     <>
       <SettingsBox
-        id="#account"
         title="Account"
         description="Manage your Streaming Interactions accounts here.">
         <form

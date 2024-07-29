@@ -7,8 +7,8 @@
 
 body {
   background-color: var(--si-gray-950);
-  min-height: 100vh !important;
-  min-width: 100vw !important;
+  height: 100vh !important;
+  width: 100vw !important;
   overflow: hidden;
 }
 
@@ -17,13 +17,10 @@ a {
 }
 
 .container {
-  display: flex;
-  /* grid-template-columns: 188px auto; */
+  display: grid;
+  grid-template-columns: 188px auto;
   gap: 256px;
-  padding: 72px 0;
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
+  padding: 72px 0 0 320px;
 }
 
 .header {
@@ -50,6 +47,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 48px;
+  height: 100vh;
+  width: 100%;
 }
 
 .userInfo {

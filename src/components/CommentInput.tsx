@@ -1,4 +1,5 @@
 import { useContent } from "@/hooks/useContent"
+import { useLang } from "@/hooks/useLang"
 import { supabase } from "@/services/supabase"
 import type { TablesInsert, TablesUpdate } from "@/types/supabase"
 import type { User } from "@supabase/supabase-js"
@@ -43,6 +44,8 @@ const CommentInput: FC<CommentInputProps> = ({
     setEditedReply
   } = useContent()
 
+  const { commentLang } = useLang()
+
   useEffect(() => {
     if (value) {
       setComment(value)
@@ -72,7 +75,8 @@ const CommentInput: FC<CommentInputProps> = ({
             username: user.user_metadata.username,
             user_avatar: user.user_metadata.avatar,
             user_id: user.id,
-            comment
+            comment,
+            lang: commentLang
           }
 
           await supabase.from("comments").insert([payload])

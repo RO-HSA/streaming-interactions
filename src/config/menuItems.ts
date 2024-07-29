@@ -3,12 +3,12 @@ import { MonitorCog, User } from "lucide-react"
 export const menuItems = [
   {
     title: "Account",
-    href: "#account",
+    nav: "account",
     icon: User
   },
   {
     title: "Preferences",
-    href: "#preferences",
+    nav: "preferences",
     icon: MonitorCog
   }
 ]

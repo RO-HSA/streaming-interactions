@@ -13,8 +13,8 @@ import AccountSettings from "@/components/AccountSettings"
 import Menu from "@/components/Menu"
 import PreferencesSettings from "@/components/PreferencesSettings"
 import Logo from "@/components/UI/Logo"
+import { useMenu } from "@/hooks/useMenu"
 import { useOptions } from "@/hooks/useOptions"
-import { Center } from "@chakra-ui/react"
 
 const Options = () => {
   const [user, _] = useStorage<User>({
@@ -25,6 +25,7 @@ const Options = () => {
   })
 
   const { avatar } = useOptions()
+  const { navigation } = useMenu()
 
   return (
     <>
@@ -49,17 +50,20 @@ const Options = () => {
               </div>
             </div>
           </header>
-          <main className={style.container}>
+          <div className={style.container}>
             <Menu />
-            <div className={style.content}>
-              <AccountSettings
-                user={user?.user_metadata.username}
-                email={user?.email}
-                currentAvatar={user?.user_metadata.avatar}
-              />
-              <PreferencesSettings />
-            </div>
-          </main>
+            <main className={style.content}>
+              {navigation === "account" ? (
+                <AccountSettings
+                  user={user?.user_metadata.username}
+                  email={user?.email}
+                  currentAvatar={user?.user_metadata.avatar}
+                />
+              ) : (
+                <PreferencesSettings />
+              )}
+            </main>
+          </div>
         </>
       ) : (
         <div
