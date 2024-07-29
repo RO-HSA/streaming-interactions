@@ -1,8 +1,8 @@
 {
   "name": "streaming-interactions",
   "displayName": "Streaming interactions",
-  "version": "0.0.1",
-  "description": "Adds a comment section on streamings for interactions",
+  "version": "0.1.0",
+  "description": "Adds a sidebar on streamings page that enables users to add comments",
   "author": "Robert Santos <robertdahora@gmail.com>",
   "scripts": {
     "dev": "plasmo dev",
@@ -48,7 +48,11 @@
     "web_accessible_resources": [
       {
         "resources": [
-          "assets/profile-picture.jpg",
+          "assets/images/profile-picture.svg",
+          "assets/images/chevron-down.svg",
+          "assets/images/chevron-up.svg",
+          "assets/images/icon.svg",
+          "assets/images/logo.svg",
           "options.html"
         ],
         "matches": [
