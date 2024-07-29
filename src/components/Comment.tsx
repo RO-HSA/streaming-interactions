@@ -4,6 +4,7 @@ import { supabase } from "@/services/supabase"
 import type { TablesInsert, TablesUpdate } from "@/types/supabase"
 import type { User } from "@supabase/supabase-js"
 import { useEffect, useMemo, useState, type FC } from "react"
+import ReactMarkdown from "react-markdown"
 
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
@@ -97,7 +98,7 @@ const Comment: FC<CommentProps> = ({
             value={comment}
           />
         ) : (
-          <span className={style.comment}>{comment}</span>
+          <ReactMarkdown className={style.comment}>{comment}</ReactMarkdown>
         )}
         {replyingId === id ? (
           <CommentInput type="reply" key={id} parent_id={id} />
@@ -152,7 +153,9 @@ const Comment: FC<CommentProps> = ({
                       value={reply?.comment}
                     />
                   ) : (
-                    <span className={style.comment}>{reply?.comment}</span>
+                    <ReactMarkdown className={style.comment}>
+                      {reply?.comment}
+                    </ReactMarkdown>
                   )}
                   <div className={style.commentToolkit}>
                     {user?.id === reply.user_id && editId !== reply.id && (
