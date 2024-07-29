@@ -4,7 +4,7 @@ import { supabase } from "@/services/supabase"
 import type { TablesInsert, TablesUpdate } from "@/types/supabase"
 import type { User } from "@supabase/supabase-js"
 import { useEffect, useMemo, useState, type FC } from "react"
-import ReactMarkdown from "react-markdown"
+import Markdown from "react-markdown"
 
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
@@ -78,6 +78,16 @@ const Comment: FC<CommentProps> = ({
     return trim
   }, [replies, pagination, editedReply])
 
+  // const allowElement = (element: Element) => {
+  //   if (element === undefined) {
+  //     return true
+  //   }
+
+  //   const allowedElements = ["p", "strong", "em", "a", "h1", "h2", "ul", "li"]
+
+  //   return allowedElements.includes(element.tagName)
+  // }
+
   return (
     <div className={style.commentWrapper}>
       {user_avatar ? (
@@ -98,7 +108,7 @@ const Comment: FC<CommentProps> = ({
             value={comment}
           />
         ) : (
-          <ReactMarkdown className={style.comment}>{comment}</ReactMarkdown>
+          <Markdown className={style.comment}>{comment}</Markdown>
         )}
         {replyingId === id ? (
           <CommentInput type="reply" key={id} parent_id={id} />
@@ -126,7 +136,7 @@ const Comment: FC<CommentProps> = ({
           <Loading />
         ) : (
           repliesData?.length > 0 &&
-          repliesData?.map((reply) => {
+          repliesData.map((reply) => {
             return (
               <div key={reply.id} className={style.commentWrapper}>
                 {reply.user_avatar ? (
@@ -150,12 +160,12 @@ const Comment: FC<CommentProps> = ({
                       type="edit"
                       editId={reply.id}
                       editType="reply"
-                      value={reply?.comment}
+                      value={reply.comment}
                     />
                   ) : (
-                    <ReactMarkdown className={style.comment}>
-                      {reply?.comment}
-                    </ReactMarkdown>
+                    <Markdown className={style.comment}>
+                      {reply.comment}
+                    </Markdown>
                   )}
                   <div className={style.commentToolkit}>
                     {user?.id === reply.user_id && editId !== reply.id && (
