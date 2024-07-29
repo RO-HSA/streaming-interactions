@@ -1,0 +1,31 @@
+.select {
+  appearance: none;
+  color: var(--si-amethyst-50);
+  font-size: 18px;
+  font-weight: 400;
+  background-color: var(--si-gray-900);
+  border: 2px solid var(--si-gray-700);
+  border-radius: 6px;
+  padding-left: 16px;
+  height: 48px;
+  max-width: 400px;
+  width: 100%;
+  background-image: url("../../../assets/images/chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 8px top 50%;
+  transition:
+    border-color 0.2s ease-in-out,
+    background-image 0.1s ease-in-out;
+}
+
+.select:hover {
+  border-color: var(--si-amethyst-500);
+}
+
+.select:focus {
+  color: var(--si-amethyst-200);
+  border-color: var(--si-amethyst-500);
+  background-image: url("../../../assets/images/chevron-up.svg");
+  stroke: var(--si-amethyst-200);
+  outline: none;
+}
