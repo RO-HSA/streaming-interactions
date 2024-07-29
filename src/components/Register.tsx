@@ -54,7 +54,7 @@ const Register = () => {
         data: {
           username: getValues("username"),
           avatar: publicUrl,
-          ui_lang: userLang,
+          ui_lang: "en",
           comment_lang: userLang
         }
       }
