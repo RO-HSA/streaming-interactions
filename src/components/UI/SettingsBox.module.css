@@ -1,0 +1,25 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  color: var(--si-amethyst-50);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.description {
+  color: var(--si-amethyst-50);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+}
