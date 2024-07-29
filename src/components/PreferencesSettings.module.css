@@ -1,0 +1,18 @@
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputGroup label {
+  color: var(--si-gray-400);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+}
