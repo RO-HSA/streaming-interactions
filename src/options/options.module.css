@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Geist";
+}
+
+body {
+  background-color: var(--si-gray-950);
+  min-height: 100vh !important;
+  min-width: 100vw !important;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  /* grid-template-columns: 188px auto; */
+  gap: 256px;
+  padding: 72px 0;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: var(--si-gray-900);
+  width: 100vw;
+  height: 72px;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.username {
+  color: var(--si-amethyst-50);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.userAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background-color: #d9d9d9;
+}
