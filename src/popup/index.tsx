@@ -19,6 +19,7 @@ import Login from "@/components/Login"
 import PasswordRecovery from "@/components/PasswordRecovery"
 import Logo from "@/components/UI/Logo"
 import UserLogged from "@/components/UserLogged"
+import { useLang } from "@/hooks/useLang"
 import { usePopup } from "@/hooks/usePopup"
 import {
   ChakraBaseProvider,
@@ -28,6 +29,8 @@ import {
 
 const Popup = () => {
   const { authType, setAuthType } = usePopup()
+
+  const { setUiLang, setCommentLang } = useLang()
 
   const [user, setUser] = useStorage<User>({
     key: "user",
@@ -46,6 +49,8 @@ const Popup = () => {
       }
       if (!!data.session) {
         setUser(data.session.user)
+        setUiLang(data.session.user.user_metadata.ui_lang)
+        setCommentLang(data.session.user.user_metadata.comment_lang)
         setAuthType("LOGGED")
         sendToBackground({
           name: "init-session",

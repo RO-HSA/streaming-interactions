@@ -29,7 +29,7 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
   })
 
   const { comments, setComments } = useContent()
-  const { commentLang } = useLang()
+  const { commentLang, setUiLang, setCommentLang } = useLang()
 
   useEffect(() => {
     chrome.runtime.onMessage.addListener((obj) => {
@@ -79,6 +79,8 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
 
       if (!!user.session) {
         setUser(user.session.user)
+        setUiLang(user.session.user.user_metadata.ui_lang)
+        setCommentLang(user.session.user.user_metadata.comment_lang)
         sendToBackground({
           name: "init-session",
           body: {
