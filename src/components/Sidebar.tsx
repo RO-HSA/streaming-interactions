@@ -30,38 +30,40 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
 
   const { comments, setComments } = useContent()
 
-  const { setUiLang, setCommentLang } = useLang()
+  const { commentLang, setUiLang, setCommentLang } = useLang()
+
+  const fetchComments = async (url: string) => {
+    const browserLang = chrome.i18n.getUILanguage()
+    const userLang = user?.user_metadata.comment_lang
+    console.log("Entrou na porra do request")
+
+    const { data } = await supabase
+      .from("comments")
+      .select("*")
+      .eq("url", url)
+      .eq("lang", browserLang)
+
+    setComments(data)
+    setIsLoading(false)
+  }
 
   useEffect(() => {
-    chrome.runtime.onMessage.addListener((obj) => {
-      const { url } = obj
+    chrome.runtime.onMessage.addListener(async (obj) => {
+      const { url, userLang } = obj
       if (url !== currentUrl) {
         setCurrentUrl(url)
         setIsLoading(true)
 
         const browserLang = chrome.i18n.getUILanguage()
 
-        if (user.user_metadata.comment_lang) {
-          supabase
-            .from("comments")
-            .select("*")
-            .eq("url", url)
-            .eq("lang", user.user_metadata.comment_lang)
-            .then(({ data }) => {
-              setComments(data)
-              setIsLoading(false)
-            })
-        } else {
-          supabase
-            .from("comments")
-            .select("*")
-            .eq("url", url)
-            .eq("lang", browserLang)
-            .then(({ data }) => {
-              setComments(data)
-              setIsLoading(false)
-            })
-        }
+        const { data } = await supabase
+          .from("comments")
+          .select("*")
+          .eq("url", url)
+          .eq("lang", userLang ? userLang : browserLang)
+
+        setComments(data)
+        setIsLoading(false)
       }
     })
 
@@ -75,7 +77,7 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
 
       if (!!data.session) {
         setUser(data.session.user)
-        await sendToBackground({
+        sendToBackground({
           name: "init-session",
           body: {
             refresh_token: data.session.refresh_token,
@@ -93,27 +95,17 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
           setIsLoading(true)
           const browserLang = chrome.i18n.getUILanguage()
 
-          if (data.session.user.user_metadata.comment_lang) {
-            supabase
-              .from("comments")
-              .select("*")
-              .eq("url", value.url)
-              .eq("lang", data.session.user.user_metadata.comment_lang)
-              .then(({ data }) => {
-                setComments(data)
-                setIsLoading(false)
-              })
-          } else {
-            supabase
-              .from("comments")
-              .select("*")
-              .eq("url", value.url)
-              .eq("lang", browserLang)
-              .then(({ data }) => {
-                setComments(data)
-                setIsLoading(false)
-              })
-          }
+          const userLang = data.session.user.user_metadata.comment_lang
+
+          supabase
+            .from("comments")
+            .select("*")
+            .eq("url", value.url)
+            .eq("lang", userLang ? userLang : browserLang)
+            .then(({ data }) => {
+              setComments(data)
+              setIsLoading(false)
+            })
         }
       })
     }

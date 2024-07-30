@@ -22,7 +22,8 @@ a {
   gap: 256px;
   max-width: 1280px;
   width: 100%;
-  padding: 72px;
+  margin: 0 auto;
+  padding: 72px 0;
 }
 
 .header {

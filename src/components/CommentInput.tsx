@@ -3,7 +3,13 @@ import { useLang } from "@/hooks/useLang"
 import { supabase } from "@/services/supabase"
 import type { TablesInsert, TablesUpdate } from "@/types/supabase"
 import type { User } from "@supabase/supabase-js"
-import { useEffect, useState, type FC, type FormEvent } from "react"
+import {
+  useEffect,
+  useState,
+  type FC,
+  type FormEvent,
+  type KeyboardEvent
+} from "react"
 
 import { sendToBackground } from "@plasmohq/messaging"
 import { Storage } from "@plasmohq/storage"
@@ -158,6 +164,10 @@ const CommentInput: FC<CommentInputProps> = ({
 
   const disabled = !user || user === undefined
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    event.stopPropagation()
+  }
+
   return (
     <form
       className={style.commentsForm}
@@ -165,6 +175,7 @@ const CommentInput: FC<CommentInputProps> = ({
       onSubmit={handleSubmit}>
       <textarea
         className={style.commentInput}
+        onKeyDown={handleKeyDown}
         disabled={disabled}
         required
         value={
