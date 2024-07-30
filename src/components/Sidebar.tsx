@@ -29,6 +29,7 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
   })
 
   const { comments, setComments } = useContent()
+
   const { commentLang, setUiLang, setCommentLang } = useLang()
 
   useEffect(() => {
@@ -37,24 +38,67 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
       if (url !== currentUrl) {
         setCurrentUrl(url)
         setIsLoading(true)
+
+        const browserLang = chrome.i18n.getUILanguage()
+
+        if (user.user_metadata.comment_lang) {
+          supabase
+            .from("comments")
+            .select("*")
+            .eq("url", url)
+            .eq("lang", user.user_metadata.comment_lang)
+            .then(({ data }) => {
+              setComments(data)
+              setIsLoading(false)
+            })
+        } else {
+          supabase
+            .from("comments")
+            .select("*")
+            .eq("url", url)
+            .eq("lang", browserLang)
+            .then(({ data }) => {
+              setComments(data)
+              setIsLoading(false)
+            })
+        }
       }
     })
 
     async function init() {
-      const { data: user, error: userError } = await supabase.auth.getSession()
+      const { data, error: userError } = await supabase.auth.getSession()
       const resp = sendToBackground({ name: "initial-url" })
+
+      if (userError) {
+        return
+      }
+
+      if (!!data.session) {
+        setUser(data.session.user)
+        await sendToBackground({
+          name: "init-session",
+          body: {
+            refresh_token: data.session.refresh_token,
+            access_token: data.session.access_token
+          }
+        })
+      }
+
+      setCommentLang(data.session.user.user_metadata.comment_lang)
+      setUiLang(data.session.user.user_metadata.ui_lang)
+
       resp.then((value) => {
         if (value.url !== currentUrl) {
           setCurrentUrl(value.url)
           setIsLoading(true)
           const browserLang = chrome.i18n.getUILanguage()
 
-          if (commentLang) {
+          if (data.session.user.user_metadata.comment_lang) {
             supabase
               .from("comments")
               .select("*")
               .eq("url", value.url)
-              .eq("lang", commentLang)
+              .eq("lang", data.session.user.user_metadata.comment_lang)
               .then(({ data }) => {
                 setComments(data)
                 setIsLoading(false)
@@ -72,27 +116,10 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
           }
         }
       })
-
-      if (userError) {
-        return
-      }
-
-      if (!!user.session) {
-        setUser(user.session.user)
-        setUiLang(user.session.user.user_metadata.ui_lang)
-        setCommentLang(user.session.user.user_metadata.comment_lang)
-        sendToBackground({
-          name: "init-session",
-          body: {
-            refresh_token: user.session.refresh_token,
-            access_token: user.session.access_token
-          }
-        })
-      }
     }
 
     init()
-  }, [commentLang])
+  }, [])
 
   const rootContainer = document.getElementById("si-container")
 

@@ -99,7 +99,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
     <>
       <SettingsBox
         title="Account"
-        description="Manage your Streaming Interactions accounts here.">
+        description="Manage your Streaming Interactions account here.">
         <form
           className={style.form}
           onSubmit={handleSubmit(handleAccountUpdate)}>

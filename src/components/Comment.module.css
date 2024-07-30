@@ -50,10 +50,10 @@
 }
 
 .commentToolkit button {
-  font-size: 10px;
-  color: var(--si-gray-500);
-  font-weight: 700;
-  line-height: normal;
+  font-size: 10px !important;
+  color: var(--si-gray-500) !important;
+  font-weight: 700 !important;
+  line-height: normal !important;
 }
 
 .showMoreReplies {

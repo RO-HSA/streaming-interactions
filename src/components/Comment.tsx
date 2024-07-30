@@ -78,16 +78,6 @@ const Comment: FC<CommentProps> = ({
     return trim
   }, [replies, pagination, editedReply])
 
-  // const allowElement = (element: Element) => {
-  //   if (element === undefined) {
-  //     return true
-  //   }
-
-  //   const allowedElements = ["p", "strong", "em", "a", "h1", "h2", "ul", "li"]
-
-  //   return allowedElements.includes(element.tagName)
-  // }
-
   return (
     <div className={style.commentWrapper}>
       {user_avatar ? (

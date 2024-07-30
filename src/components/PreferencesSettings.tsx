@@ -35,7 +35,7 @@ const PreferencesSettings = () => {
       setCommentLang(lang)
       await supabase.auth.updateUser({
         data: {
-          commment_lang: lang
+          comment_lang: lang
         }
       })
     }
