@@ -69,7 +69,7 @@ const Register = () => {
     }
 
     if (data.user.identities.length > 0) {
-      toast.success("Account created successfully")
+      toast.success("Account created successfully, please confirm your e-mail")
       setAuthType("LOGIN")
     }
 

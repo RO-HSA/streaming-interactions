@@ -13,11 +13,17 @@ import AccountSettings from "@/components/AccountSettings"
 import Menu from "@/components/Menu"
 import PreferencesSettings from "@/components/PreferencesSettings"
 import Logo from "@/components/UI/Logo"
+import { useLang } from "@/hooks/useLang"
 import { useMenu } from "@/hooks/useMenu"
 import { useOptions } from "@/hooks/useOptions"
+import { supabase } from "@/services/supabase"
+import { useEffect } from "react"
+import { toast, ToastContainer } from "react-toastify"
+
+import { sendToBackground } from "@plasmohq/messaging"
 
 const Options = () => {
-  const [user, _] = useStorage<User>({
+  const [user, setUser] = useStorage<User>({
     key: "user",
     instance: new Storage({
       area: "local"
@@ -26,6 +32,33 @@ const Options = () => {
 
   const { avatar } = useOptions()
   const { navigation } = useMenu()
+  const { setUiLang, setCommentLang } = useLang()
+
+  useEffect(() => {
+    async function init() {
+      const { data, error } = await supabase.auth.getSession()
+
+      if (error) {
+        toast.error(error.message)
+        return
+      }
+
+      if (!!data.session) {
+        setUser(data.session.user)
+        setUiLang(data.session.user.user_metadata.ui_lang)
+        setCommentLang(data.session.user.user_metadata.comment_lang)
+        sendToBackground({
+          name: "init-session",
+          body: {
+            refresh_token: data.session.refresh_token,
+            access_token: data.session.access_token
+          }
+        })
+      }
+    }
+
+    init()
+  }, [])
 
   return (
     <>
@@ -80,6 +113,7 @@ const Options = () => {
           </h1>
         </div>
       )}
+      <ToastContainer theme="dark" />
     </>
   )
 }

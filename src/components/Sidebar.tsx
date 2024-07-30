@@ -30,7 +30,7 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
 
   const { comments, setComments } = useContent()
 
-  const { commentLang, setUiLang, setCommentLang } = useLang()
+  const { setUiLang, setCommentLang } = useLang()
 
   useEffect(() => {
     chrome.runtime.onMessage.addListener((obj) => {

@@ -70,12 +70,10 @@ const PreferencesSettings = () => {
             <SelectInput
               id="commentLanguage"
               disabled={isLoading}
+              value={commentLang}
               onChange={(e) => handleCommentLanguageUpdate(e.target.value)}>
               {COMMENT_LANGUAGES.map((lang) => (
-                <option
-                  value={lang.code}
-                  key={lang.code}
-                  selected={lang.code === commentLang}>
+                <option value={lang.code} key={lang.code}>
                   {lang.name}
                 </option>
               ))}
