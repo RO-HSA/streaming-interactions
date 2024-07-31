@@ -6,7 +6,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, tab) => {
   if (tab.url) {
     chrome.tabs.sendMessage(tabId, {
       url: tab.url.split("?")[0],
-      userLang: data.session.user.user_metadata.comment_lang
+      userLang: data.session.user?.user_metadata.comment_lang
     })
   }
 })

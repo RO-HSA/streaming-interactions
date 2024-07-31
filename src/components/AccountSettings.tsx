@@ -54,15 +54,26 @@ const AccountSettings: FC<AccountSettingsProps> = ({
     setIsLoading(true)
     const currentAvatarName = currentAvatar.split("users_avatar/")
     let newAvatarPathName = null
+    let publicUrl = null
 
     if (newAvatar) {
-      console.log("Entrou no novo avatar")
-      newAvatarPathName = `${email}-${getValues("avatar")[0].name}`
+      newAvatarPathName = `${email}-${getValues("avatar")[0]?.name}`
 
-      await supabase.storage.from("users_avatar").remove([currentAvatarName[1]])
+      if (currentAvatar) {
+        await supabase.storage
+          .from("users_avatar")
+          .remove([currentAvatarName[1]])
+      }
+
       await supabase.storage
         .from("users_avatar")
         .upload(newAvatarPathName, getValues("avatar")[0])
+
+      const { data } = supabase.storage
+        .from("users_avatar")
+        .getPublicUrl(newAvatarPathName)
+
+      publicUrl = data.publicUrl
     }
 
     if (getValues("password")) {
@@ -70,7 +81,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
         password: getValues("password"),
         data: {
           username: getValues("username"),
-          avatar: newAvatar ? newAvatarPathName : currentAvatar
+          avatar: newAvatar ? publicUrl : currentAvatar
         }
       })
 
@@ -83,7 +94,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
       const { error } = await supabase.auth.updateUser({
         data: {
           username: getValues("username"),
-          avatar: newAvatar ? newAvatarPathName : currentAvatar
+          avatar: newAvatar ? publicUrl : currentAvatar
         }
       })
 

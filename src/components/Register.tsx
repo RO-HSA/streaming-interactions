@@ -35,11 +35,13 @@ const Register = () => {
 
   const handleEmailRegister: SubmitHandler<RegisterFormSchema> = async () => {
     setIsLoading(true)
-    const avatarPathName = `${getValues("email")}-${getValues("avatar")[0].name}`
+    const avatarPathName = `${getValues("email")}-${getValues("avatar")[0]?.name}`
 
-    await supabase.storage
-      .from("users_avatar")
-      .upload(avatarPathName, getValues("avatar")[0])
+    if (getValues("avatar")[0]) {
+      await supabase.storage
+        .from("users_avatar")
+        .upload(avatarPathName, getValues("avatar")[0])
+    }
 
     const {
       data: { publicUrl }
@@ -53,7 +55,7 @@ const Register = () => {
       options: {
         data: {
           username: getValues("username"),
-          avatar: publicUrl,
+          avatar: getValues("avatar")[0] ? publicUrl : "",
           ui_lang: "en",
           comment_lang: userLang
         }
