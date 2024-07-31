@@ -18,13 +18,8 @@
     background-image 0.1s ease-in-out;
 }
 
-.select:hover {
-  border-color: var(--si-amethyst-500);
-}
-
 .select:focus {
   color: var(--si-amethyst-200);
-  border-color: var(--si-amethyst-500);
   background-image: url("../../../assets/images/chevron-up.svg");
   stroke: var(--si-amethyst-200);
   outline: none;

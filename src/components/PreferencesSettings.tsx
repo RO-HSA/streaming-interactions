@@ -54,12 +54,13 @@ const PreferencesSettings = () => {
             <SelectInput
               id="interfaceLanguage"
               disabled={isLoading}
+              value={uiLang}
               onChange={(e) => handleUiLanguageUpdate(e.target.value)}>
               {UI_LANGUAGES.map((lang) => (
                 <option
                   value={lang.code}
                   key={lang.code}
-                  selected={lang.code === uiLang}>
+                  className={style.option}>
                   {lang.name}
                 </option>
               ))}
@@ -73,7 +74,10 @@ const PreferencesSettings = () => {
               value={commentLang}
               onChange={(e) => handleCommentLanguageUpdate(e.target.value)}>
               {COMMENT_LANGUAGES.map((lang) => (
-                <option value={lang.code} key={lang.code}>
+                <option
+                  value={lang.code}
+                  key={lang.code}
+                  className={style.option}>
                   {lang.name}
                 </option>
               ))}

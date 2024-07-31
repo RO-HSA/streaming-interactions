@@ -30,22 +30,7 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
 
   const { comments, setComments } = useContent()
 
-  const { commentLang, setUiLang, setCommentLang } = useLang()
-
-  const fetchComments = async (url: string) => {
-    const browserLang = chrome.i18n.getUILanguage()
-    const userLang = user?.user_metadata.comment_lang
-    console.log("Entrou na porra do request")
-
-    const { data } = await supabase
-      .from("comments")
-      .select("*")
-      .eq("url", url)
-      .eq("lang", browserLang)
-
-    setComments(data)
-    setIsLoading(false)
-  }
+  const { commentLang } = useLang()
 
   useEffect(() => {
     chrome.runtime.onMessage.addListener(async (obj) => {
@@ -86,16 +71,18 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
         })
       }
 
-      setCommentLang(data.session.user.user_metadata.comment_lang)
-      setUiLang(data.session.user.user_metadata.ui_lang)
-
       resp.then((value) => {
         if (value.url !== currentUrl) {
           setCurrentUrl(value.url)
           setIsLoading(true)
+
           const browserLang = chrome.i18n.getUILanguage()
 
-          const userLang = data.session.user.user_metadata.comment_lang
+          let userLang = undefined
+
+          if (data.session) {
+            userLang = data.session.user?.user_metadata.comment_lang
+          }
 
           supabase
             .from("comments")

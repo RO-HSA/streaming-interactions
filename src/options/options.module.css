@@ -5,6 +5,10 @@
   font-family: "Geist";
 }
 
+html {
+  background-color: var(--si-gray-950);
+}
+
 body {
   background-color: var(--si-gray-950);
   height: 100vh !important;
@@ -23,13 +27,13 @@ a {
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  padding: 72px 0;
+  padding: 144px 0;
 }
 
 .header {
   display: flex;
   align-items: center;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: var(--si-gray-900);

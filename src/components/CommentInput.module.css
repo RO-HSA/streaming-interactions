@@ -92,6 +92,8 @@
   font-size: 12px !important;
   font-weight: 500 !important;
   line-height: normal !important;
+  background-color: transparent !important;
+  border: none !important;
 }
 
 .submitBtn:disabled {
