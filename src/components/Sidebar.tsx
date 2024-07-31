@@ -1,10 +1,9 @@
 import Comment from "@/components/Comment"
 import { useContent } from "@/hooks/useContent"
-import { useLang } from "@/hooks/useLang"
 import { formatDate } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import type { User } from "@supabase/supabase-js"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, RefreshCcw } from "lucide-react"
 import type { PlasmoCSUIProps } from "plasmo"
 import { useEffect, useMemo, useState, type FC } from "react"
 import { ToastContainer } from "react-toastify"
@@ -29,8 +28,6 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
   })
 
   const { comments, setComments } = useContent()
-
-  const { commentLang } = useLang()
 
   useEffect(() => {
     chrome.runtime.onMessage.addListener(async (obj) => {
@@ -106,6 +103,30 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
     ? rootContainer.classList.add(style.open)
     : rootContainer.classList.remove(style.open)
 
+  const refresh = async () => {
+    setIsLoading(true)
+
+    const { data } = await supabase.auth.getSession()
+
+    const browserLang = chrome.i18n.getUILanguage()
+
+    let userLang = undefined
+
+    if (data.session) {
+      userLang = data.session.user.user_metadata.comment_lang
+    }
+
+    supabase
+      .from("comments")
+      .select("*")
+      .eq("url", currentUrl)
+      .eq("lang", userLang ? userLang : browserLang)
+      .then(({ data }) => {
+        setComments(data)
+        setIsLoading(false)
+      })
+  }
+
   const commentsData = useMemo(() => {
     const sort = comments?.sort((a, b) => {
       const dateA = new Date(a.created_at).getTime()
@@ -124,6 +145,9 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
           type="comment"
           key={user?.id ? user?.id : "comment-input"}
         />
+        <div className={style.refresh} onClick={() => refresh()}>
+          <RefreshCcw className={style.refreshIcon} size={20} />
+        </div>
         <div className={style.commentsList}>
           {isLoading ? (
             <Loading />

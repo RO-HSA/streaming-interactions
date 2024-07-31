@@ -106,7 +106,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
           <div className={style.wrapper}>
             <div className={style.textInputs}>
               <div className={style.inputGroup}>
-                <label htmlFor="username">Username</label>
+                <Label htmlFor="username">Username</Label>
                 <Input
                   id="username"
                   type="text"
@@ -122,7 +122,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
                 />
               </div>
               <div className={style.inputGroup}>
-                <label htmlFor="changePassword">Change Password</label>
+                <Label htmlFor="changePassword">Change Password</Label>
                 <Input
                   id="changePassword"
                   type="password"

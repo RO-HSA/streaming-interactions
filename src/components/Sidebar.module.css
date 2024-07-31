@@ -95,6 +95,23 @@
   cursor: pointer;
 }
 
+.refresh {
+  cursor: pointer;
+}
+
+.refreshBtn {
+  background-color: transparent;
+}
+
+.refreshIcon {
+  color: var(--si-amethyst-200);
+  transition: all 0.2s ease-in-out;
+}
+
+.refreshIcon:hover {
+  transform: rotate(-180deg);
+}
+
 @media screen and (min-width: 640px) {
   .menu {
     left: -32px;
