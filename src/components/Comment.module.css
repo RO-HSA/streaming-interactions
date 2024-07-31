@@ -36,11 +36,18 @@
 }
 
 .comment {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   font-size: 12px;
   font-weight: 700;
   line-height: normal;
   color: var(--si-gray-50);
   word-wrap: break-word;
+}
+
+.comment p {
+  margin: 0;
 }
 
 .commentToolkit {
@@ -50,11 +57,13 @@
 }
 
 .commentToolkit button {
+  appearance: none;
   font-size: 10px !important;
   color: var(--si-gray-500) !important;
   font-weight: 700 !important;
   border: none !important;
-  background-color: transparent !important;
+  background: none !important;
+  padding: 0 !important;
 }
 
 .showMoreReplies {

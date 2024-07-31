@@ -1,5 +1,6 @@
 import Comment from "@/components/Comment"
 import { useContent } from "@/hooks/useContent"
+import { useLang } from "@/hooks/useLang"
 import { formatDate } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import type { User } from "@supabase/supabase-js"
@@ -28,6 +29,8 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
   })
 
   const { comments, setComments } = useContent()
+
+  const { setCommentLang } = useLang()
 
   useEffect(() => {
     chrome.runtime.onMessage.addListener(async (obj) => {
@@ -67,6 +70,8 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
           }
         })
       }
+
+      setCommentLang(data.session.user?.user_metadata.comment_lang)
 
       resp.then((value) => {
         if (value.url !== currentUrl) {
