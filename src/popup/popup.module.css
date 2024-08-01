@@ -1,6 +1,5 @@
 html {
-  background-color: white;
-  padding: 2px;
+  background-color: var(--si-gray-950);
 }
 
 body {

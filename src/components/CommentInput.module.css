@@ -1,7 +1,30 @@
 .commentsForm {
   display: flex;
+  position: relative;
   flex-direction: column;
   height: 100%;
+}
+
+.modal {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 1px);
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: color-mix(in srgb, var(--si-gray-950) 25%, transparent);
+}
+
+.modal span {
+  color: var(--si-amethyst-50);
+  user-select: none;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .buttonWrapper {
@@ -57,22 +80,17 @@
 }
 
 .submitBtn {
-  color: var(--si-amethyst-50) !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  line-height: normal !important;
-  background-color: color-mix(
-    in srgb,
-    var(--si-amethyst-500) 75%,
-    transparent
-  ) !important;
-  border: 1px solid color-mix(in srgb, var(--si-amethyst-500) 10%, transparent) !important;
-  padding: 8px 12px !important;
-  border-radius: 6px !important;
-  height: 100% !important;
+  color: var(--si-amethyst-50);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  background-color: color-mix(in srgb, var(--si-amethyst-500) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--si-amethyst-500) 10%, transparent);
+  height: 32px;
+  width: 98px;
+  border-radius: 6px;
   backdrop-filter: blur(12.5px);
   -webkit-backdrop-filter: blur(12.5px);
-  transition: height 0.2s ease-in-out !important;
 }
 
 .replyEditBtn {
@@ -102,7 +120,7 @@
 
 .submitBtn:disabled,
 .replyEditBtn:disabled {
-  background-color: var(--si-gray-400) !important;
+  background-color: var(--si-gray-400);
   cursor: default;
 }
 

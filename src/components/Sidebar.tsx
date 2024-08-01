@@ -4,6 +4,7 @@ import { useLang } from "@/hooks/useLang"
 import { formatDate } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import type { User } from "@supabase/supabase-js"
+import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight, RefreshCcw } from "lucide-react"
 import type { PlasmoCSUIProps } from "plasmo"
 import { useEffect, useMemo, useState, type FC } from "react"
@@ -148,10 +149,15 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
   return (
     <>
       <div className={[style.content, isOpen ? style.visible : ""].join(" ")}>
-        <CommentInput
-          type="comment"
-          key={user?.id ? user?.id : "comment-input"}
-        />
+        <div
+          className={[style.header, isOpen ? style.headerVisible : ""].join(
+            " "
+          )}>
+          <CommentInput
+            type="comment"
+            key={user?.id ? user?.id : "comment-input"}
+          />
+        </div>
         <div className={style.refresh} onClick={() => refresh()}>
           <RefreshCcw className={style.refreshIcon} size={20} />
         </div>
@@ -177,7 +183,7 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
         <ToastContainer theme="dark" />
       </div>
 
-      <div className={style.menu} onClick={() => setIsOpen(!isOpen)}>
+      <div className={style.toggle} onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? (
           <ChevronRight color="var(--si-amethyst-500)" />
         ) : (

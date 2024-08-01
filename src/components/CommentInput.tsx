@@ -3,6 +3,7 @@ import { useLang } from "@/hooks/useLang"
 import { supabase } from "@/services/supabase"
 import type { TablesInsert, TablesUpdate } from "@/types/supabase"
 import type { User } from "@supabase/supabase-js"
+import { motion } from "framer-motion"
 import {
   useEffect,
   useState,
@@ -194,13 +195,16 @@ const CommentInput: FC<CommentInputProps> = ({
         onKeyDown={handleKeyDown}
         disabled={disabled}
         required
-        value={
-          !disabled
-            ? comment
-            : `You must be logged in to ${type === "comment" ? "comment" : "reply"},\nclick on the extension icon to log in`
-        }
+        value={comment}
         onChange={(e) => setComment(e.target.value)}
       />
+      <div className={[style.modal, !disabled ? style.hidden : ""].join(" ")}>
+        <span>
+          You must be logged in to comment,
+          <br />
+          click on the extension icon to log in
+        </span>
+      </div>
       <div className={style.buttonWrapper}>
         {type === "reply" || type === "edit" ? (
           <>

@@ -4,34 +4,57 @@
   top: 0;
   right: 0;
   max-width: 580px;
-  width: 0;
+  width: 100%;
   z-index: 10000;
-  background-color: color-mix(in srgb, var(--si-gray-950) 95%, transparent);
+  background-color: color-mix(in srgb, var(--si-gray-950) 99%, transparent);
   border-left: 1px solid
     color-mix(in srgb, var(--si-amethyst-400) 25%, transparent);
-  padding: 0;
+  padding: 32px;
   height: 100vh;
-  transition:
-    width 0.2s ease-in-out,
-    max-width 0.2s ease-in-out,
-    padding 0.2s ease-in-out;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.header {
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.headerVisible {
+  transform: scaleX(1);
 }
 
 .open {
-  max-width: 580px;
-  width: 100%;
-  padding: 32px;
+  transform: translateX(0);
 }
 
 .content {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  visibility: hidden;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
 }
 
 .visible {
-  visibility: visible;
+  transform: translateX(0);
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: color-mix(in srgb, var(--si-gray-950) 90%, transparent);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  z-index: -1;
+}
+
+.commentInputWrapper {
+  position: relative;
 }
 
 .commentsList {
@@ -60,23 +83,7 @@
   background: color-mix(in srgb, var(--si-gray-600) 90%, transparent);
 }
 
-.submitBtn {
-  color: var(--si-amethyst-50);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: normal;
-  background-color: color-mix(in srgb, var(--si-amethyst-500) 75%, transparent);
-  border: 1px solid color-mix(in srgb, var(--si-amethyst-500) 10%, transparent);
-  padding: 8px 12px;
-  border-radius: 6px;
-}
-
-.submitBtn:disabled {
-  visibility: hidden;
-  cursor: default;
-}
-
-.menu {
+.toggle {
   position: absolute;
   top: 64;
   right: 0;
@@ -96,38 +103,23 @@
 
 .refresh {
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
 }
 
 .refreshBtn {
   background-color: transparent;
-  transition: all 0.2s ease-in-out;
 }
 
 .refreshIcon {
   color: var(--si-amethyst-200);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .refreshIcon:hover {
   transform: rotate(-180deg);
 }
 
-.content::before,
-.menu::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(12.5px);
-  -webkit-backdrop-filter: blur(12.5px);
-  z-index: -1;
-}
-
 @media screen and (min-width: 640px) {
-  .menu {
+  .toggle {
     left: -32px;
   }
 }
