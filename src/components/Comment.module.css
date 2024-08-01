@@ -43,11 +43,18 @@
   font-weight: 700;
   line-height: normal;
   color: var(--si-gray-50);
-  word-wrap: break-word;
 }
 
-.comment p {
+.comment h1,
+.comment h2,
+.comment h3,
+.comment h4,
+.comment h5,
+.comment h6,
+.comment p,
+.comment span {
   margin: 0;
+  word-break: break-all;
 }
 
 .commentToolkit {

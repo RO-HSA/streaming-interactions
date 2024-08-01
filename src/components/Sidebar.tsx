@@ -71,7 +71,9 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
         })
       }
 
-      setCommentLang(data.session.user?.user_metadata.comment_lang)
+      if (data.session) {
+        setCommentLang(data.session.user?.user_metadata.comment_lang)
+      }
 
       resp.then((value) => {
         if (value.url !== currentUrl) {

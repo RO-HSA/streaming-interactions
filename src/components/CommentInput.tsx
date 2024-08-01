@@ -34,6 +34,7 @@ const CommentInput: FC<CommentInputProps> = ({
 }) => {
   const [comment, setComment] = useState<string>("")
   const [currentUrl, setCurrentUrl] = useState<string>()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [user, _] = useStorage<User>({
     key: "user",
     instance: new Storage({
@@ -56,6 +57,7 @@ const CommentInput: FC<CommentInputProps> = ({
     if (value) {
       setComment(value)
     }
+
     chrome.runtime.onMessage.addListener((obj) => {
       const { url } = obj
       if (url !== currentUrl) {
@@ -70,10 +72,11 @@ const CommentInput: FC<CommentInputProps> = ({
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    setIsLoading(true)
 
     switch (type) {
       case "comment":
-        if (comment !== "") {
+        if (comment !== "" && comment.trim() !== "") {
           const resp = await sendToBackground({ name: "initial-url" })
 
           const payload: TablesInsert<"comments"> = {
@@ -94,9 +97,10 @@ const CommentInput: FC<CommentInputProps> = ({
           })
         }
         setComment("")
+        setIsLoading(false)
         break
       case "reply":
-        if (comment !== "") {
+        if (comment !== "" && comment.trim() !== "") {
           const payload: TablesInsert<"replies"> = {
             id: crypto.randomUUID(),
             parent_id,
@@ -115,9 +119,10 @@ const CommentInput: FC<CommentInputProps> = ({
         }
         setComment("")
         setReplyingId(null)
+        setIsLoading(false)
         break
       case "edit":
-        if (comment !== "") {
+        if (comment !== "" && comment.trim() !== "") {
           if (editType === "comment") {
             const payload: TablesUpdate<"comments"> = {
               comment,
@@ -134,6 +139,8 @@ const CommentInput: FC<CommentInputProps> = ({
               updateComment(editId, updateCommentsResponse[0])
               setEditId(null)
             }
+
+            setIsLoading(false)
           }
           if (editType === "reply") {
             const payload: TablesUpdate<"replies"> = {
@@ -154,6 +161,7 @@ const CommentInput: FC<CommentInputProps> = ({
               })
               setEditId(null)
             }
+            setIsLoading(false)
           }
         }
         break
@@ -166,6 +174,11 @@ const CommentInput: FC<CommentInputProps> = ({
 
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     event.stopPropagation()
+
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault()
+      handleSubmit(event)
+    }
   }
 
   return (
@@ -174,7 +187,10 @@ const CommentInput: FC<CommentInputProps> = ({
       style={{ gap: type === "comment" ? "12px" : "8px" }}
       onSubmit={handleSubmit}>
       <textarea
-        className={style.commentInput}
+        className={[
+          style.commentInput,
+          type === "edit" || type === "reply" ? style.editInput : ""
+        ].join(" ")}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         required
@@ -194,18 +210,22 @@ const CommentInput: FC<CommentInputProps> = ({
                 if (type === "reply") setReplyingId(null)
                 if (type === "edit") setEditId(null)
               }}
+              disabled={isLoading}
               className={style.cancelBtn}>
               Cancel
             </button>
             <button
               type="submit"
-              disabled={disabled}
+              disabled={disabled || isLoading}
               className={style.replyEditBtn}>
               {type === "reply" ? "Reply" : "Edit"}
             </button>
           </>
         ) : (
-          <button type="submit" disabled={disabled} className={style.submitBtn}>
+          <button
+            type="submit"
+            disabled={disabled || isLoading}
+            className={style.submitBtn}>
             Comment
           </button>
         )}

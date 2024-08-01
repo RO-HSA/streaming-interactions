@@ -21,9 +21,11 @@
   border: 1px solid color-mix(in srgb, var(--si-amethyst-400) 25%, transparent);
   box-shadow: none;
   resize: none;
-  height: 52px;
-  max-height: 80px;
-  transition: height 0.2s ease-in-out;
+  height: 128px;
+}
+
+.replyEditHeight {
+  height: 80px !important;
 }
 
 .commentInput::-webkit-scrollbar {
@@ -44,7 +46,6 @@
 }
 
 .commentInput:focus {
-  height: 80px;
   outline: none;
   box-shadow: none !important;
   border: 1px solid color-mix(in srgb, var(--si-amethyst-400) 25%, transparent) !important;
@@ -69,6 +70,8 @@
   padding: 8px 12px !important;
   border-radius: 6px !important;
   height: 100% !important;
+  backdrop-filter: blur(12.5px);
+  -webkit-backdrop-filter: blur(12.5px);
   transition: height 0.2s ease-in-out !important;
 }
 
@@ -82,8 +85,9 @@
     transparent
   ) !important;
   border: 1px solid color-mix(in srgb, var(--si-amethyst-500) 10%, transparent) !important;
-  backdrop-filter: blur(4.8px);
   padding: 4px 8px !important;
+  backdrop-filter: blur(12.5px);
+  -webkit-backdrop-filter: blur(12.5px);
   border-radius: 6px !important;
 }
 
@@ -96,8 +100,12 @@
   border: none !important;
 }
 
-.submitBtn:disabled {
-  height: 0 !important;
-  display: none !important;
-  cursor: default !important;
+.submitBtn:disabled,
+.replyEditBtn:disabled {
+  background-color: var(--si-gray-400) !important;
+  cursor: default;
+}
+
+.cancelBtn:disabled {
+  cursor: wait;
 }

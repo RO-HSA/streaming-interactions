@@ -98,7 +98,18 @@ const Comment: FC<CommentProps> = ({
             value={comment}
           />
         ) : (
-          <Markdown className={style.comment}>{comment}</Markdown>
+          <Markdown
+            components={{
+              h1: "p",
+              h2: "p",
+              h3: "p",
+              h4: "p",
+              h5: "p",
+              h6: "p"
+            }}
+            className={style.comment}>
+            {comment}
+          </Markdown>
         )}
         {replyingId === id ? (
           <CommentInput type="reply" key={id} parent_id={id} />
@@ -153,7 +164,16 @@ const Comment: FC<CommentProps> = ({
                       value={reply.comment}
                     />
                   ) : (
-                    <Markdown className={style.comment}>
+                    <Markdown
+                      components={{
+                        h1: "p",
+                        h2: "p",
+                        h3: "p",
+                        h4: "p",
+                        h5: "p",
+                        h6: "p"
+                      }}
+                      className={style.comment}>
                       {reply.comment}
                     </Markdown>
                   )}
