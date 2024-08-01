@@ -11,6 +11,14 @@ chrome.tabs.onUpdated.addListener(async (tabId, tab) => {
         url: newUrl,
         userLang: data.session.user?.user_metadata.comment_lang
       })
+    } else if (tab.url.includes("primevideo")) {
+      const newUrl =
+        "detail/" + tab.url.split("detail/")[1].split("ref=")[0].split("?")[0]
+
+      chrome.tabs.sendMessage(tabId, {
+        url: newUrl,
+        userLang: data.session.user?.user_metadata.comment_lang
+      })
     } else {
       chrome.tabs.sendMessage(tabId, {
         url: tab.url.split("?")[0],
