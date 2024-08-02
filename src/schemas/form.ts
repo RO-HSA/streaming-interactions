@@ -15,7 +15,10 @@ export const registerFormSchema = z
       .instanceof(FileList)
       .optional()
       .refine(fileSizeLimit, "Max image size is 128KB"),
-    username: z.string().min(1, "Username required"),
+    username: z
+      .string()
+      .min(1, "Username required")
+      .max(16, "Username too long, max 16 characters"),
     email: z.string().min(1, "E-mail required").email("E-mail invalid"),
     password: z
       .string()
@@ -50,7 +53,10 @@ export const updateAccountFormSchema = z.object({
     .instanceof(FileList)
     .optional()
     .refine(fileSizeLimit, "Max image size is 128KB"),
-  username: z.string().min(1, "Username required"),
+  username: z
+    .string()
+    .min(1, "Username required")
+    .max(16, "Username too long, max 16 characters"),
   password: z
     .string()
     .optional()
