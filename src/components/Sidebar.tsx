@@ -163,7 +163,7 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
         </div>
         <div className={style.commentsList}>
           {isLoading ? (
-            <Loading />
+            <Loading size="100%" />
           ) : (
             commentsData.map((item) => {
               return (

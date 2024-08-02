@@ -1,23 +1,63 @@
-.container {
+.ringContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.loader {
-  width: 48px;
-  height: 48px;
+.ring {
   border: 5px solid #fff;
   border-bottom-color: var(--si-amethyst-600);
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+  animation: ring-rotation 1s linear infinite;
 }
 
-@keyframes rotation {
+@keyframes ring-rotation {
   0% {
     transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.eclipseContainer {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+
+.eclipse {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(0.25);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+
+.eclipse div {
+  box-sizing: content-box;
+  position: absolute;
+  animation: eclipse-rotation 1s linear infinite;
+  width: 42px;
+  height: 42px;
+  top: 29px;
+  left: 29px;
+  border-radius: 50%;
+  box-shadow: 0 4px 0 0 var(--si-amethyst-50);
+  transform-origin: 21px 22.95px;
+}
+
+@keyframes eclipse-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
   }
   100% {
     transform: rotate(360deg);

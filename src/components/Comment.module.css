@@ -39,10 +39,10 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: normal;
   color: var(--si-gray-50);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .comment h1,

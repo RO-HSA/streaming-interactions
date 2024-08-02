@@ -2,7 +2,6 @@ import { useOptions } from "@/hooks/useOptions"
 import { handleImageChange } from "@/lib/utils"
 import { updateAccountFormSchema } from "@/schemas/form"
 import { supabase } from "@/services/supabase"
-import { Spinner } from "@chakra-ui/react"
 import { ErrorMessage } from "@hookform/error-message"
 import { zodResolver } from "@hookform/resolvers/zod"
 import picturePlaceholder from "data-base64:../../assets/images/profile-picture.svg"
@@ -17,6 +16,7 @@ import Button from "./UI/Button"
 import Error from "./UI/Error"
 import Input from "./UI/Input"
 import Label from "./UI/Label"
+import Loading from "./UI/Loading"
 import SettingsBox from "./UI/SettingsBox"
 
 interface AccountSettingsProps {
@@ -30,7 +30,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
   email,
   currentAvatar
 }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const { avatar: newAvatar, setAvatar: setNewAvatar } = useOptions()
 
@@ -183,7 +183,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
             type="submit"
             disabled={isLoading}
             className={style.submitBtn}>
-            {isLoading && <Spinner marginRight={2} size="sm" color="#f7f3ff" />}
+            {isLoading && <Loading variant="eclipse" />}
             Update
           </Button>
         </form>
