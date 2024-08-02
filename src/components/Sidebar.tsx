@@ -158,9 +158,6 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
             key={user?.id ? user?.id : "comment-input"}
           />
         </div>
-        <div className={style.refresh} onClick={() => refresh()}>
-          <RefreshCcw className={style.refreshIcon} size={20} />
-        </div>
         <div className={style.commentsList}>
           {isLoading ? (
             <Loading size="100%" />
