@@ -81,6 +81,8 @@ const CommentInput: FC<CommentInputProps> = ({
     e.preventDefault()
     setIsLoading(true)
 
+    const browserLang = chrome.i18n.getUILanguage()
+
     switch (type) {
       case "comment":
         if (comment !== "" && comment.trim() !== "") {
@@ -92,7 +94,7 @@ const CommentInput: FC<CommentInputProps> = ({
             user_avatar: user.user_metadata.avatar,
             user_id: user.id,
             comment,
-            lang: commentLang || userLang
+            lang: commentLang || userLang || browserLang
           }
 
           await supabase.from("comments").insert([payload])
