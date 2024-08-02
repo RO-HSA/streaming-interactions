@@ -90,13 +90,15 @@ const Popup = () => {
             <Register />
           )}
         </div>
-        <p className={style.kofi}>
-          Want to support my work?
-          <a href="https://ko-fi.com/H2H810IYZG" target="_blank">
-            buy me a coffee
-            <img src={kofi} width={16} alt="ko-fi" />
-          </a>
-        </p>
+        {authType !== "REGISTER" && (
+          <p className={style.kofi}>
+            Want to support my work?
+            <a href="https://ko-fi.com/H2H810IYZG" target="_blank">
+              buy me a coffee
+              <img src={kofi} width={16} alt="ko-fi" />
+            </a>
+          </p>
+        )}
       </main>
       <ToastContainer theme="dark" />
     </ChakraBaseProvider>
