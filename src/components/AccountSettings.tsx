@@ -30,7 +30,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
   email,
   currentAvatar
 }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const { avatar: newAvatar, setAvatar: setNewAvatar } = useOptions()
 

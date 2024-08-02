@@ -17,6 +17,7 @@ export const registerFormSchema = z
       .refine(fileSizeLimit, "Max image size is 128KB"),
     username: z
       .string()
+      .trim()
       .min(1, "Username required")
       .max(16, "Username too long, max 16 characters"),
     email: z.string().min(1, "E-mail required").email("E-mail invalid"),
@@ -55,6 +56,7 @@ export const updateAccountFormSchema = z.object({
     .refine(fileSizeLimit, "Max image size is 128KB"),
   username: z
     .string()
+    .trim()
     .min(1, "Username required")
     .max(16, "Username too long, max 16 characters"),
   password: z
