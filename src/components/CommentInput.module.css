@@ -20,6 +20,8 @@
 
 .modal span {
   color: var(--si-amethyst-50);
+  font-size: 20px;
+  font-weight: 600;
   user-select: none;
 }
 

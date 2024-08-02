@@ -90,9 +90,6 @@ importers:
       '@types/react-dom':
         specifier: 18.2.18
         version: 18.2.18
-      disqus-react:
-        specifier: ^1.1.5
-        version: 1.1.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       prettier:
         specifier: 3.2.4
         version: 3.2.4
@@ -2426,12 +2423,6 @@ packages:
   dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
-
-  disqus-react@1.1.5:
-    resolution: {integrity: sha512-9fdG5m6c3wJzlCDLaMheuUagMVj3s5qgUSXdekpCsvzYOKG21AiuOoqyDzA0oXrpPnYzgpnsvPYqZ+i0hJPGZw==}
-    peerDependencies:
-      react: ^15.6.1 || ^16.0.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^15.6.1 || ^16.0.0 || ^17.0.0 || ^18.0.0
 
   dom-serializer@1.4.1:
     resolution: {integrity: sha512-VHwB3KfrcOOkelEG2ZOfxqLZdfkil8PtJi4P8N2MMXucZq2yLp75ClViUlOVwyoHEDjYU433Aq+5zWP61+RGag==}
@@ -7115,11 +7106,6 @@ snapshots:
   dir-glob@3.0.1:
     dependencies:
       path-type: 4.0.0
-
-  disqus-react@1.1.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
 
   dom-serializer@1.4.1:
     dependencies:

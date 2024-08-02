@@ -21,8 +21,14 @@ import Input from "./UI/Input"
 import Label from "./UI/Label"
 
 const Login = () => {
-  const [_, setUser] = useStorage<User>({
+  const [user, setUser] = useStorage<User>({
     key: "user",
+    instance: new Storage({
+      area: "local"
+    })
+  })
+  const [_, setUserLang] = useStorage<string>({
+    key: "user_lang",
     instance: new Storage({
       area: "local"
     })
@@ -59,6 +65,7 @@ const Login = () => {
       setUser(data.user)
       setUiLang(data.user.user_metadata.ui_lang)
       setCommentLang(data.user.user_metadata.comment_lang)
+      setUserLang(data.user.user_metadata.comment_lang)
       setIsLoading(false)
       setAuthType("LOGGED")
     }

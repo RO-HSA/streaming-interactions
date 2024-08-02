@@ -42,6 +42,12 @@ const CommentInput: FC<CommentInputProps> = ({
       area: "local"
     })
   })
+  const [userLang, setUserLang] = useStorage<string>({
+    key: "user_lang",
+    instance: new Storage({
+      area: "local"
+    })
+  })
 
   const {
     setSingleComment,
@@ -86,7 +92,7 @@ const CommentInput: FC<CommentInputProps> = ({
             user_avatar: user.user_metadata.avatar,
             user_id: user.id,
             comment,
-            lang: commentLang
+            lang: commentLang || userLang
           }
 
           await supabase.from("comments").insert([payload])
