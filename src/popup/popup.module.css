@@ -28,14 +28,16 @@ body {
 .kofi {
   display: flex;
   justify-content: center;
-}
-
-.kofi {
-  display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 4px;
   color: var(--si-gray-600);
   font-size: 12px;
   line-height: normal;
   margin-top: 34px;
+}
+
+.kofi a {
+  display: flex;
+  gap: 4px;
+  color: var(--si-amethyst-200);
 }

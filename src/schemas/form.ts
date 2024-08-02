@@ -49,7 +49,7 @@ export const updateAccountFormSchema = z.object({
   avatar: z
     .instanceof(FileList)
     .optional()
-    .refine(fileSizeLimit, "Max image size is 8KB"),
+    .refine(fileSizeLimit, "Max image size is 128KB"),
   username: z.string().min(1, "Username required"),
   password: z
     .string()
