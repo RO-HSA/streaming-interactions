@@ -160,7 +160,7 @@ const Register = () => {
         </div>
         <Button type="submit" disabled={isLoading} className={style.submitBtn}>
           {isLoading && <Spinner marginRight={2} size="sm" color="#f7f3ff" />}
-          Register
+          Sign up
         </Button>
       </form>
       <div className={style.loginAnchorWrapper}>
