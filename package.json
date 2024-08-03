@@ -66,10 +66,6 @@
     ],
     "permissions": [
       "tabs"
-    ],
-    "host_permissions": [
-      "https://*/*"
-    ],
-    "key": "$CRX_KEY"
+    ]
   }
 }

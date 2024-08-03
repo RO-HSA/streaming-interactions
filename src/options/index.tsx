@@ -11,18 +11,20 @@ import "@/styles/fonts.css"
 
 import AccountSettings from "@/components/AccountSettings"
 import Menu from "@/components/Menu"
+import PasswordChange from "@/components/PasswordChange"
 import PreferencesSettings from "@/components/PreferencesSettings"
 import Logo from "@/components/UI/Logo"
 import { useLang } from "@/hooks/useLang"
 import { useMenu } from "@/hooks/useMenu"
 import { useOptions } from "@/hooks/useOptions"
 import { supabase } from "@/services/supabase"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { toast, ToastContainer } from "react-toastify"
 
 import { sendToBackground } from "@plasmohq/messaging"
 
 const Options = () => {
+  const [optionsNav, setOptionsNav] = useState<"menu" | "recovery">("menu")
   const [user, setUser] = useStorage<User>({
     key: "user",
     instance: new Storage({
@@ -35,6 +37,12 @@ const Options = () => {
   const { setUiLang, setCommentLang } = useLang()
 
   useEffect(() => {
+    const typeParams = new URLSearchParams(window.location.href).get("type")
+
+    if (typeParams === "recovery") {
+      setOptionsNav("recovery")
+    }
+
     async function init() {
       const { data, error } = await supabase.auth.getSession()
 
@@ -59,6 +67,10 @@ const Options = () => {
 
     init()
   }, [])
+
+  if (optionsNav === "recovery") {
+    return <PasswordChange />
+  }
 
   return (
     <>

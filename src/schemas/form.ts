@@ -23,12 +23,13 @@ export const registerFormSchema = z
     email: z.string().min(1, "E-mail required").email("E-mail invalid"),
     password: z
       .string()
+      .trim()
       .min(1, "Password required")
       .regex(
         passRegex,
         "The password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one special character"
       ),
-    confirmPassword: z.string().min(1, "Confirm password required")
+    confirmPassword: z.string().trim().min(1, "Password confirmation required")
   })
   .superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {
@@ -48,6 +49,28 @@ export const loginFormSchema = z.object({
 export const recoveryFormSchema = z.object({
   email: z.string().min(1, "E-mail required").email("E-mail invalid")
 })
+
+export const changePasswordFormSchema = z
+  .object({
+    password: z
+      .string()
+      .trim()
+      .min(1, "Password required")
+      .regex(
+        passRegex,
+        "The password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one special character"
+      ),
+    confirmPassword: z.string().trim().min(1, "Password confirmation required")
+  })
+  .superRefine(({ confirmPassword, password }, ctx) => {
+    if (confirmPassword !== password) {
+      ctx.addIssue({
+        code: "custom",
+        message: "The passwords did not match",
+        path: ["confirmPassword"]
+      })
+    }
+  })
 
 export const updateAccountFormSchema = z.object({
   avatar: z
