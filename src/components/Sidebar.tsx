@@ -161,6 +161,8 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
         <div className={style.commentsList}>
           {isLoading ? (
             <Loading size="100%" />
+          ) : commentsData.length === 0 ? (
+            <p className={style.noComments}>Be the first to comment</p>
           ) : (
             commentsData.map((item) => {
               return (

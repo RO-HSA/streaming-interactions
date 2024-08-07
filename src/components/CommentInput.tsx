@@ -206,7 +206,7 @@ const CommentInput: FC<CommentInputProps> = ({
         value={comment}
         onChange={(e) => setComment(e.target.value)}
       />
-      <div className={[style.modal, !disabled ? style.hidden : ""].join(" ")}>
+      <div className={[style.modal, disabled ? style.visible : ""].join(" ")}>
         <span>
           You must be logged in to comment,
           <br />

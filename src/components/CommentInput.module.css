@@ -6,7 +6,7 @@
 }
 
 .modal {
-  visibility: visible;
+  visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -25,8 +25,8 @@
   user-select: none;
 }
 
-.hidden {
-  visibility: hidden;
+.visible {
+  visibility: visible;
 }
 
 .buttonWrapper {
