@@ -1,8 +1,8 @@
 {
   "name": "streaming-interactions",
   "displayName": "Streaming interactions",
-  "version": "0.1.0",
-  "description": "Adds a sidebar on streamings page that enables users to add comments",
+  "version": "0.1.2",
+  "description": "Interact with people around the world about your favorite shows and movies through a float sidebar on the streaming page",
   "author": "Robert Santos <robertdahora@gmail.com>",
   "scripts": {
     "dev": "plasmo dev",
