@@ -102,6 +102,7 @@
 }
 
 .noComments {
+  color: var(--si-amethyst-50);
   font-size: 16px;
   font-weight: 500;
   align-self: center;
