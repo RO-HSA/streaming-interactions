@@ -13,7 +13,13 @@ import "@/styles/globals.css"
 import Sidebar from "@/components/Sidebar"
 
 export const config: PlasmoCSConfig = {
-  matches: ["https://*.crunchyroll.com/*", "https://*.netflix.com/*"],
+  matches: [
+    "https://*.crunchyroll.com/*",
+    "https://*.netflix.com/*",
+    "https://*.primevideo.com/*",
+    "https://*.disneyplus.com/*",
+    "https://*.max.com/*"
+  ],
   css: ["../styles/fonts.css"]
 }
 
