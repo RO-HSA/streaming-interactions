@@ -1,0 +1,146 @@
+{
+  "email": {
+    "message": "E-mail",
+    "description": "E-mail label name on login, sign up and password recovery forms"
+  },
+  "password": {
+    "message": "Senha",
+    "description": "Password label name on login and sign up forms"
+  },
+  "forgotPassword": {
+    "message": "esqueceu sua senha?",
+    "description": "Anchor text on login form to recover password"
+  },
+  "loginButton": {
+    "message": "Logar",
+    "description": "Login button text on login form"
+  },
+  "noAccount": {
+    "message": "Não tem uma conta?",
+    "description": "Text on login and password recovery forms"
+  },
+  "signupAnchor": {
+    "message": "registre-se",
+    "description": "Anchor text on login form to sign up"
+  },
+  "signupButton": {
+    "message": "Registrar",
+    "description": "Sign up button text on sign up form"
+  },
+  "username": {
+    "message": "Nome de Usuário",
+    "description": "Username label name on sign up form"
+  },
+  "confirmPassword": {
+    "message": "Confirme sua senha",
+    "description": "Confirm password label name on sign up form"
+  },
+  "hasAccount": {
+    "message": "Já tem uma conta?",
+    "description": "Text on sign up form"
+  },
+  "loginAnchor": {
+    "message": "logue-se",
+    "description": "Anchor text on sign up form to login"
+  },
+  "recoverAccount": {
+    "message": "Recuperar conta",
+    "description": "Recover account button text on password recovery form"
+  },
+  "recoveryToastInfo": {
+    "message": "Se o e-mail existir, você receberá um e-mail para recuperar sua conta",
+    "description": "Toast info on password recovery form upon submit"
+  },
+  "welcome": {
+    "message": "Bem-vindo,",
+    "description": "Welcome text on logged popup page"
+  },
+  "settings": {
+    "message": "Configurações",
+    "description": "Settings button text on logged popup page and options page"
+  },
+  "logout": {
+    "message": "Deslogar",
+    "description": "Logout button text on logged popup page"
+  },
+  "supportWork": {
+    "message": "Que me apoiar?",
+    "description": "Support work text on login and password recovery forms"
+  },
+  "buyCoffee": {
+    "message": "me compre um café",
+    "description": "Buy me a coffee button text on login and password recovery forms"
+  },
+  "userNotLoggedOptions": {
+    "message": "Você precisa estar logado para ver estar página, clique no ícone da extensão para logar",
+    "description": "User not logged message for options page"
+  },
+  "userNotLoggedSidebar": {
+    "message": "Você precisa estar logado para comentar, clique no ícone da extensão para logar",
+    "description": "User not logged message for sidebar"
+  },
+  "account": {
+    "message": "Conta",
+    "description": "Menu item text on options page"
+  },
+  "preferences": {
+    "message": "Preferências",
+    "description": "Menu item text on options page"
+  },
+  "changePassword": {
+    "message": "Trocar de Senha",
+    "description": "Account Settings label on options page"
+  },
+  "accountSettingsDescription": {
+    "message": "Gerencie as informações da conta do Streaming Interactions aqui.",
+    "description": "Account Settings description on options page"
+  },
+  "update": {
+    "message": "Atualizar",
+    "description": "Update button text on Account Settings form"
+  },
+  "preferencesSettingsDescription": {
+    "message": "Altere suas preferências quando quiser.",
+    "description": "Preferences Settings description on options page"
+  },
+  "interfaceLanguage": {
+    "message": "Idioma da Interface",
+    "description": "Interface Language label on Preferences Settings"
+  },
+  "commentsLanguageFilter": {
+    "message": "Filtro de Idioma dos Comentários",
+    "description": "Comments Language Filter label on Preferences Settings"
+  },
+  "firstToComment": {
+    "message": "Seja o primeiro a comentar",
+    "description": "Text that appears when there's no comments on sidebar"
+  },
+  "comment": {
+    "message": "Comentar",
+    "description": "Comment button text on sidebar"
+  },
+  "edit": {
+    "message": "Editar",
+    "description": "Edit button text on sidebar"
+  },
+  "reply": {
+    "message": "Responder",
+    "description": "Reply button text on sidebar"
+  },
+  "showMoreReplies": {
+    "message": "mostrar mais comentários",
+    "description": "Show more replies button text on a commment's replies"
+  },
+  "newPassword": {
+    "message": "Nova Senha",
+    "description": "New Password label name on change password form"
+  },
+  "confirmNewPassword": {
+    "message": "Confirme a Nova Senha",
+    "description": "Confirm New Password label name on change password form"
+  },
+  "resetPassword": {
+    "message": "Resetar Senha",
+    "description": "Reset Password button text on change password form"
+  }
+}
