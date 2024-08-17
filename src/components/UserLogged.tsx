@@ -1,5 +1,6 @@
 import Button from "@/components/UI/Button"
 import { usePopup } from "@/hooks/usePopup"
+import { i18n } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import type { User } from "@supabase/supabase-js"
 import type { FC } from "react"
@@ -31,15 +32,15 @@ const UserLogged: FC<UserLoggedProps> = ({ user }) => {
   return (
     <div className={style.wrapper}>
       <h3 className={style.welcomeMessage}>
-        Welcome, <span>{user?.user_metadata.username}</span>!
+        {i18n("welcome")} <span>{user?.user_metadata.username}</span>!
       </h3>
       <Button
         className={style.btn}
         onClick={() => chrome.runtime.openOptionsPage()}>
-        Settings
+        {i18n("settings")}
       </Button>
       <Button className={style.btn} onClick={logout}>
-        Logout
+        {i18n("logout")}
       </Button>
     </div>
   )

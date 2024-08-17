@@ -1,5 +1,5 @@
 import { useContent } from "@/hooks/useContent"
-import { formatDate } from "@/lib/utils"
+import { formatDate, i18n } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import type { TablesInsert, TablesUpdate } from "@/types/supabase"
 import type { User } from "@supabase/supabase-js"
@@ -119,7 +119,7 @@ const Comment: FC<CommentProps> = ({
             className={style.commentToolkit}>
             {user?.id === user_id && editId !== id && (
               <button type="button" onClick={() => setEditId(id)}>
-                Edit
+                {i18n("edit")}
               </button>
             )}
             {user?.id && editId !== id && (
@@ -128,7 +128,7 @@ const Comment: FC<CommentProps> = ({
                 onClick={() => {
                   setReplyingId(id)
                 }}>
-                Reply
+                {i18n("reply")}
               </button>
             )}
           </div>
@@ -182,7 +182,7 @@ const Comment: FC<CommentProps> = ({
                       <button
                         type="button"
                         onClick={() => setEditId(reply?.id)}>
-                        Edit
+                        {i18n("edit")}
                       </button>
                     )}
                   </div>
@@ -195,7 +195,7 @@ const Comment: FC<CommentProps> = ({
           <span
             className={style.showMoreReplies}
             onClick={() => setPagination(pagination + 2)}>
-            show more replies
+            {i18n("showMoreReplies")}
           </span>
         )}
       </div>

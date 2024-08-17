@@ -86,7 +86,7 @@
 .toggle {
   position: absolute;
   top: 64;
-  right: 0;
+  left: -32px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,10 +106,4 @@
   font-size: 16px;
   font-weight: 500;
   align-self: center;
-}
-
-@media screen and (min-width: 640px) {
-  .toggle {
-    left: -32px;
-  }
 }

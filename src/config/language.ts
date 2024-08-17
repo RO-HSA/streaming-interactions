@@ -1,5 +1,3 @@
-export const UI_LANGUAGES = [{ code: "en", name: "English" }]
-
 export const COMMENT_LANGUAGES = [
   { code: "en", name: "English" },
   { code: "af", name: "Afrikaans" },

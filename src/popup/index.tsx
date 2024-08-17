@@ -1,4 +1,3 @@
-import Register from "@/components/Register"
 import { supabase } from "@/services/supabase"
 import type { User } from "@supabase/supabase-js"
 import kofi from "data-base64:../../assets/images/ko-fi.svg"
@@ -17,10 +16,12 @@ import "react-toastify/dist/ReactToastify.css"
 
 import Login from "@/components/Login"
 import PasswordRecovery from "@/components/PasswordRecovery"
+import Register from "@/components/Register"
 import Logo from "@/components/UI/Logo"
 import UserLogged from "@/components/UserLogged"
 import { useLang } from "@/hooks/useLang"
 import { usePopup } from "@/hooks/usePopup"
+import { i18n } from "@/lib/utils"
 import {
   ChakraBaseProvider,
   theme as chakraTheme,
@@ -92,9 +93,9 @@ const Popup = () => {
         </div>
         {authType !== "REGISTER" && (
           <p className={style.kofi}>
-            Want to support my work?
+            {i18n("supportWork")}
             <a href="https://ko-fi.com/H2H810IYZG" target="_blank">
-              buy me a coffee
+              {i18n("buyCoffee")}
               <img src={kofi} width={16} alt="ko-fi" />
             </a>
           </p>

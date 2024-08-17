@@ -1,4 +1,5 @@
 import { usePopup } from "@/hooks/usePopup"
+import { i18n } from "@/lib/utils"
 import { recoveryFormSchema } from "@/schemas/form"
 import { supabase } from "@/services/supabase"
 import { Spinner } from "@chakra-ui/react"
@@ -39,9 +40,7 @@ const PasswordRecovery = () => {
       setIsLoading(false)
     }
 
-    toast.info(
-      "If the email exists, you will receive an email to recover your account"
-    )
+    toast.info(i18n("recoveryToastInfo"))
 
     setIsLoading(false)
     setAuthType("LOGIN")
@@ -51,7 +50,7 @@ const PasswordRecovery = () => {
     <div>
       <form className={style.loginForm} onSubmit={handleSubmit(handleRecovery)}>
         <div className={style.inputs}>
-          <Label htmlFor="email">E-mail</Label>
+          <Label htmlFor="email">{i18n("email")}</Label>
           <Input id="email" type="text" {...register("email")} />
           <ErrorMessage
             errors={formState.errors}
@@ -61,13 +60,15 @@ const PasswordRecovery = () => {
         </div>
         <Button type="submit" disabled={isLoading} className={style.submitBtn}>
           {isLoading && <Spinner marginRight={2} size="xs" color="#f7f3ff" />}
-          Recover account
+          {i18n("recoverAccount")}
         </Button>
       </form>
       <div className={style.registerAnchorWrapper}>
         <p className={style.registerAnchor}>
-          Don't have an account?{" "}
-          <span onClick={() => setAuthType("REGISTER")}>sign up</span>
+          {i18n("noAccount")}{" "}
+          <span onClick={() => setAuthType("REGISTER")}>
+            {i18n("signupAnchor")}
+          </span>
         </p>
       </div>
     </div>

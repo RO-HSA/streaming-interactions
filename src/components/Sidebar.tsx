@@ -1,7 +1,7 @@
 import Comment from "@/components/Comment"
 import { useContent } from "@/hooks/useContent"
 import { useLang } from "@/hooks/useLang"
-import { formatDate } from "@/lib/utils"
+import { formatDate, i18n } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import type { User } from "@supabase/supabase-js"
 import { motion } from "framer-motion"
@@ -111,30 +111,6 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
     ? rootContainer.classList.add(style.open)
     : rootContainer.classList.remove(style.open)
 
-  const refresh = async () => {
-    setIsLoading(true)
-
-    const { data } = await supabase.auth.getSession()
-
-    const browserLang = chrome.i18n.getUILanguage()
-
-    let userLang = undefined
-
-    if (data.session) {
-      userLang = data.session.user.user_metadata.comment_lang
-    }
-
-    supabase
-      .from("comments")
-      .select("*")
-      .eq("url", currentUrl)
-      .eq("lang", userLang ? userLang : browserLang)
-      .then(({ data }) => {
-        setComments(data)
-        setIsLoading(false)
-      })
-  }
-
   const commentsData = useMemo(() => {
     const sort = comments?.sort((a, b) => {
       const dateA = new Date(a.created_at).getTime()
@@ -162,7 +138,7 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
           {isLoading ? (
             <Loading size="100%" />
           ) : commentsData.length === 0 ? (
-            <p className={style.noComments}>Be the first to comment</p>
+            <p className={style.noComments}>{i18n("firstToComment")}</p>
           ) : (
             commentsData.map((item) => {
               return (

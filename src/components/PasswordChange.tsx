@@ -1,3 +1,4 @@
+import { i18n } from "@/lib/utils"
 import { changePasswordFormSchema } from "@/schemas/form"
 import { supabase } from "@/services/supabase"
 import { ErrorMessage } from "@hookform/error-message"
@@ -47,10 +48,10 @@ const PasswordChange = () => {
     <form
       className={style.container}
       onSubmit={handleSubmit(handlePasswordUpdate)}>
-      <h3 className={style.title}>Password Reset</h3>
+      <h3 className={style.title}>{i18n("changePassword")}</h3>
       <div className={style.inputGroup}>
         <Label className={style.label} htmlFor="password">
-          New Password
+          {i18n("newPassword")}
         </Label>
         <Input
           id="password"
@@ -68,7 +69,7 @@ const PasswordChange = () => {
       </div>
       <div className={style.inputGroup}>
         <Label className={style.label} htmlFor="password">
-          Confirm New Password
+          {i18n("confirmNewPassword")}
         </Label>
         <Input
           id="password"
@@ -86,7 +87,7 @@ const PasswordChange = () => {
       </div>
       <Button disabled={isLoading} type="submit" className={style.submitBtn}>
         {isLoading && <Loading variant="eclipse" />}
-        Reset Password
+        {i18n("changePassword")}
       </Button>
     </form>
   )

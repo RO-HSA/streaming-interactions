@@ -1,6 +1,6 @@
 import { useOptions } from "@/hooks/useOptions"
 import { usePopup } from "@/hooks/usePopup"
-import { handleImageChange } from "@/lib/utils"
+import { handleImageChange, i18n } from "@/lib/utils"
 import { registerFormSchema } from "@/schemas/form"
 import { supabase } from "@/services/supabase"
 import { Spinner } from "@chakra-ui/react"
@@ -119,7 +119,7 @@ const Register = () => {
           />
         </div>
         <div className={style.inputs}>
-          <Label htmlFor="email">E-mail</Label>
+          <Label htmlFor="email">{i18n("email")}</Label>
           <Input id="email" type="text" {...register("email")} />
           <ErrorMessage
             errors={formState.errors}
@@ -128,7 +128,7 @@ const Register = () => {
           />
         </div>
         <div className={style.inputs}>
-          <Label htmlFor="username">Username</Label>
+          <Label htmlFor="username">{i18n("username")}</Label>
           <Input id="username" type="text" {...register("username")} />
           <ErrorMessage
             errors={formState.errors}
@@ -137,7 +137,7 @@ const Register = () => {
           />
         </div>
         <div className={style.inputs}>
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="password">{i18n("password")}</Label>
           <Input id="password" type="password" {...register("password")} />
           <ErrorMessage
             errors={formState.errors}
@@ -146,7 +146,7 @@ const Register = () => {
           />
         </div>
         <div className={style.inputs}>
-          <Label htmlFor="confirmPassword">Confirm password</Label>
+          <Label htmlFor="confirmPassword">{i18n("confirmPassword")}</Label>
           <Input
             id="confirmPassword"
             type="password"
@@ -160,13 +160,15 @@ const Register = () => {
         </div>
         <Button type="submit" disabled={isLoading} className={style.submitBtn}>
           {isLoading && <Spinner marginRight={2} size="sm" color="#f7f3ff" />}
-          Sign up
+          {i18n("signupButton")}
         </Button>
       </form>
       <div className={style.loginAnchorWrapper}>
         <p className={style.loginAnchor}>
-          Already have an account?{" "}
-          <span onClick={() => setAuthType("LOGIN")}>log in</span>
+          {i18n("hasAccount")}{" "}
+          <span onClick={() => setAuthType("LOGIN")}>
+            {i18n("loginAnchor")}
+          </span>
         </p>
       </div>
     </div>

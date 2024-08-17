@@ -1,13 +1,14 @@
+import { i18n } from "@/lib/utils"
 import { MonitorCog, User } from "lucide-react"
 
 export const menuItems = [
   {
-    title: "Account",
+    title: i18n("account"),
     nav: "account",
     icon: User
   },
   {
-    title: "Preferences",
+    title: i18n("preferences"),
     nav: "preferences",
     icon: MonitorCog
   }

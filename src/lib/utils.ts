@@ -62,3 +62,5 @@ export const handleImageChange = (
     reader.readAsDataURL(file)
   }
 }
+
+export const i18n = (key: string) => chrome.i18n.getMessage(key)

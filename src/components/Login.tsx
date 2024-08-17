@@ -1,5 +1,6 @@
 import { useLang } from "@/hooks/useLang"
 import { usePopup } from "@/hooks/usePopup"
+import { i18n } from "@/lib/utils"
 import { loginFormSchema } from "@/schemas/form"
 import { supabase } from "@/services/supabase"
 import { Spinner } from "@chakra-ui/react"
@@ -79,7 +80,7 @@ const Login = () => {
         className={style.loginForm}
         onSubmit={handleSubmit(handleEmailLogin)}>
         <div className={style.inputs}>
-          <Label htmlFor="email">E-mail</Label>
+          <Label htmlFor="email">{i18n("email")}</Label>
           <Input id="email" type="text" {...register("email")} />
           <ErrorMessage
             errors={formState.errors}
@@ -88,7 +89,7 @@ const Login = () => {
           />
         </div>
         <div className={style.inputs}>
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="password">{i18n("password")}</Label>
           <Input id="password" type="password" {...register("password")} />
           <ErrorMessage
             errors={formState.errors}
@@ -98,18 +99,20 @@ const Login = () => {
           <span
             className={style.forgot}
             onClick={() => setAuthType("RECOVERY")}>
-            forgot your password?
+            {i18n("forgotPassword")}
           </span>
         </div>
         <Button type="submit" disabled={isLoading} className={style.submitBtn}>
           {isLoading && <Spinner marginRight={2} size="sm" color="#f7f3ff" />}
-          Login
+          {i18n("loginButton")}
         </Button>
       </form>
       <div className={style.registerAnchorWrapper}>
         <p className={style.registerAnchor}>
-          Don't have an account?{" "}
-          <span onClick={() => setAuthType("REGISTER")}>sign up</span>
+          {i18n("noAccount")}{" "}
+          <span onClick={() => setAuthType("REGISTER")}>
+            {i18n("signupAnchor")}
+          </span>
         </p>
       </div>
     </div>

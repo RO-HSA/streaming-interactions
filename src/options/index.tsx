@@ -17,6 +17,7 @@ import Logo from "@/components/UI/Logo"
 import { useLang } from "@/hooks/useLang"
 import { useMenu } from "@/hooks/useMenu"
 import { useOptions } from "@/hooks/useOptions"
+import { i18n } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import { useEffect, useState } from "react"
 import { toast, ToastContainer } from "react-toastify"
@@ -119,10 +120,14 @@ const Options = () => {
             width: "100vw",
             height: "100vh"
           }}>
-          <h1 style={{ color: "var(--si-amethyst-50)", fontSize: "42px" }}>
-            You need to logged in to see this page <br /> Click on this
-            extension icon to log in
-          </h1>
+          <h3
+            style={{
+              color: "var(--si-amethyst-50)",
+              fontSize: "42px",
+              maxWidth: "720px"
+            }}>
+            {i18n("userNotLoggedOptions")}
+          </h3>
         </div>
       )}
       <ToastContainer theme="dark" />

@@ -1,5 +1,5 @@
 import { useOptions } from "@/hooks/useOptions"
-import { handleImageChange } from "@/lib/utils"
+import { handleImageChange, i18n } from "@/lib/utils"
 import { updateAccountFormSchema } from "@/schemas/form"
 import { supabase } from "@/services/supabase"
 import { ErrorMessage } from "@hookform/error-message"
@@ -109,15 +109,15 @@ const AccountSettings: FC<AccountSettingsProps> = ({
   return (
     <>
       <SettingsBox
-        title="Account"
-        description="Manage your Streaming Interactions account here.">
+        title={i18n("account")}
+        description={i18n("accountSettingsDescription")}>
         <form
           className={style.form}
           onSubmit={handleSubmit(handleAccountUpdate)}>
           <div className={style.wrapper}>
             <div className={style.textInputs}>
               <div className={style.inputGroup}>
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username">{i18n("username")}</Label>
                 <Input
                   id="username"
                   type="text"
@@ -133,7 +133,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
                 />
               </div>
               <div className={style.inputGroup}>
-                <Label htmlFor="changePassword">Change Password</Label>
+                <Label htmlFor="changePassword">{i18n("changePassword")}</Label>
                 <Input
                   id="changePassword"
                   type="password"
@@ -184,7 +184,7 @@ const AccountSettings: FC<AccountSettingsProps> = ({
             disabled={isLoading}
             className={style.submitBtn}>
             {isLoading && <Loading variant="eclipse" />}
-            Update
+            {i18n("update")}
           </Button>
         </form>
       </SettingsBox>

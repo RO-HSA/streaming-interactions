@@ -1,5 +1,6 @@
 import { useContent } from "@/hooks/useContent"
 import { useLang } from "@/hooks/useLang"
+import { i18n } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import type { TablesInsert, TablesUpdate } from "@/types/supabase"
 import type { User } from "@supabase/supabase-js"
@@ -207,11 +208,7 @@ const CommentInput: FC<CommentInputProps> = ({
         onChange={(e) => setComment(e.target.value)}
       />
       <div className={[style.modal, disabled ? style.visible : ""].join(" ")}>
-        <span>
-          You must be logged in to comment,
-          <br />
-          click on the extension icon to log in
-        </span>
+        <span>{i18n("userNotLoggedSidebar")}</span>
       </div>
       <div className={style.buttonWrapper}>
         {type === "reply" || type === "edit" ? (
