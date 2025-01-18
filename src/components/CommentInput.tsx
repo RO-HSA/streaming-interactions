@@ -221,13 +221,13 @@ const CommentInput: FC<CommentInputProps> = ({
               }}
               disabled={isLoading}
               className={style.cancelBtn}>
-              Cancel
+              {i18n("cancel")}
             </button>
             <button
               type="submit"
               disabled={disabled || isLoading}
               className={style.replyEditBtn}>
-              {type === "reply" ? "Reply" : "Edit"}
+              {type === "reply" ? i18n("reply") : i18n("edit")}
             </button>
           </>
         ) : (
@@ -235,7 +235,7 @@ const CommentInput: FC<CommentInputProps> = ({
             type="submit"
             disabled={disabled || isLoading}
             className={style.submitBtn}>
-            Comment
+            {i18n("comment")}
           </button>
         )}
       </div>
