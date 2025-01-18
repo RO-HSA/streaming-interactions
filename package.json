@@ -1,7 +1,7 @@
 {
   "name": "streaming-interactions",
   "displayName": "Streaming interactions",
-  "version": "0.2",
+  "version": "1.0.0",
   "description": "Interact with people around the world about your favorite shows and movies through a float sidebar on the streaming page",
   "author": "Robert Santos <robertdahora@gmail.com>",
   "scripts": {
