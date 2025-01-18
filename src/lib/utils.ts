@@ -66,3 +66,6 @@ export const handleImageChange = (
 }
 
 export const i18n = (key: string) => chrome.i18n.getMessage(key)
+
+export const ONE_SEC_IN_MS = 1000
+export const ONE_MIN_IN_MS = ONE_SEC_IN_MS * 60

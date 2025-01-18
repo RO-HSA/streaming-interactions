@@ -1,4 +1,5 @@
 import { useContent } from "@/hooks/useContent"
+import useFormattedDate from "@/hooks/useFormattedDate"
 import { formatDate, i18n } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import type { TablesInsert, TablesUpdate } from "@/types/supabase"
@@ -19,6 +20,7 @@ interface CommentProps {
   user_id: string
   user_avatar: string
   created_at: string
+  isEdited: boolean
   comment: string
 }
 
@@ -28,6 +30,7 @@ const Comment: FC<CommentProps> = ({
   user_id,
   user_avatar,
   created_at,
+  isEdited,
   comment
 }: CommentProps) => {
   const [replies, setReplies] = useState<TablesInsert<"replies">[]>([])
@@ -42,6 +45,8 @@ const Comment: FC<CommentProps> = ({
 
   const { replyingId, reply, setReplyingId, editId, setEditId, editedReply } =
     useContent()
+
+  const formattedDate = useFormattedDate(created_at, isEdited)
 
   useEffect(() => {
     setIsLoading(true)
@@ -88,7 +93,7 @@ const Comment: FC<CommentProps> = ({
       <div className={style.commentInfo}>
         <div className={style.userInfo}>
           <span className={style.username}>{username}</span>
-          <span className={style.time}>{created_at}</span>
+          <span className={style.time}>{formattedDate}</span>
         </div>
         {editId === id ? (
           <CommentInput
