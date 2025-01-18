@@ -34,6 +34,23 @@ const PreferencesSettings = () => {
         title={i18n("preferences")}
         description={i18n("preferencesSettingsDescription")}>
         <div className={style.inputs}>
+          {/* <div className={style.inputGroup}>
+            <label htmlFor="interfaceLanguage">Interface Language</label>
+            <SelectInput
+              id="interfaceLanguage"
+              disabled={isLoading}
+              value={uiLang}
+              onChange={(e) => handleUiLanguageUpdate(e.target.value)}>
+              {UI_LANGUAGES.map((lang) => (
+                <option
+                  value={lang.code}
+                  key={lang.code}
+                  className={style.option}>
+                  {lang.name}
+                </option>
+              ))}
+            </SelectInput>
+          </div> */}
           <div className={style.inputGroup}>
             <label htmlFor="commentLanguage">
               {i18n("commentsLanguageFilter")}
