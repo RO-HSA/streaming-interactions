@@ -123,6 +123,10 @@
     "message": "Editar",
     "description": "Edit button text on sidebar"
   },
+  "cancel": {
+    "message": "Cancelar",
+    "description": "Cancel button text on sidebar"
+  },
   "reply": {
     "message": "Responder",
     "description": "Reply button text on sidebar"
@@ -142,5 +146,38 @@
   "resetPassword": {
     "message": "Resetar Senha",
     "description": "Reset Password button text on change password form"
+  },
+  "edited": {
+    "message": "Editado",
+    "description": "Edited text on sidebar"
+  },
+  "justNow": {
+    "message": "Há pouco",
+    "description": "Just now text on sidebar"
+  },
+  "daysAgo": {
+    "message": "dias atrás",
+    "description": "Days ago text on sidebar"
+  },
+  "dayAgo": {
+    "message": "dia atrás",
+    "description": "Day ago text on sidebar"
+  },
+
+  "hoursAgo": {
+    "message": "horas atrás",
+    "description": "Hours ago text on sidebar"
+  },
+  "hourAgo": {
+    "message": "hora atrás",
+    "description": "Hour ago text on sidebar"
+  },
+  "minutesAgo": {
+    "message": "minutos atrás",
+    "description": "Minutes ago text on sidebar"
+  },
+  "minuteAgo": {
+    "message": "minuto atrás",
+    "description": "Minute ago text on sidebar"
   }
 }

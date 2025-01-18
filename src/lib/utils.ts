@@ -16,36 +16,38 @@ export const formatDate = (date: string, isEdited: boolean) => {
 
   if (dateDifferenceInHours < 1) {
     if (minutes < 1) {
-      dateFormatted = "Just now"
+      dateFormatted = i18n("justNow")
     }
     if (minutes >= 1 && minutes < 2) {
-      dateFormatted = "1 minute ago"
+      dateFormatted = `1 ${i18n("minuteAgo")}`
     }
 
     if (minutes >= 2) {
-      dateFormatted = `${Math.floor(minutes)} minutes ago`
+      dateFormatted = `${Math.floor(minutes)} ${i18n("minutesAgo")}`
     }
   }
 
   if (dateDifferenceInHours >= 1 && dateDifferenceInHours < 24) {
     if (dateDifferenceInHours >= 1 && dateDifferenceInHours < 2) {
-      dateFormatted = "1 hour ago"
+      dateFormatted = `1 ${i18n("hourAgo")}`
     }
 
     if (dateDifferenceInHours >= 2) {
-      dateFormatted = `${Math.floor(dateDifferenceInHours)} hours ago`
+      dateFormatted = `${Math.floor(dateDifferenceInHours)} ${i18n("hoursAgo")}`
     }
   }
 
   if (dateDifferenceInHours >= 24) {
     if (dateDifferenceInHours >= 48) {
-      dateFormatted = `${Math.floor(dateDifferenceInHours / 24)} days ago`
+      dateFormatted = `${Math.floor(dateDifferenceInHours / 24)} ${i18n(
+        "daysAgo"
+      )}`
     } else {
-      dateFormatted = "1 day ago"
+      dateFormatted = `1 ${i18n("dayAgo")}`
     }
   }
 
-  return isEdited ? `${dateFormatted} (edited)` : dateFormatted
+  return isEdited ? `${dateFormatted} (${i18n("edited")})` : dateFormatted
 }
 
 export const handleImageChange = (
@@ -64,3 +66,6 @@ export const handleImageChange = (
 }
 
 export const i18n = (key: string) => chrome.i18n.getMessage(key)
+
+export const ONE_SEC_IN_MS = 1000
+export const ONE_MIN_IN_MS = ONE_SEC_IN_MS * 60

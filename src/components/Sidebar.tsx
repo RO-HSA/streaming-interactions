@@ -1,10 +1,9 @@
 import Comment from "@/components/Comment"
 import { useContent } from "@/hooks/useContent"
 import { useLang } from "@/hooks/useLang"
-import { formatDate, i18n } from "@/lib/utils"
+import { i18n } from "@/lib/utils"
 import { supabase } from "@/services/supabase"
 import type { User } from "@supabase/supabase-js"
-import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight, RefreshCcw } from "lucide-react"
 import type { PlasmoCSUIProps } from "plasmo"
 import { useEffect, useMemo, useState, type FC } from "react"
@@ -148,7 +147,8 @@ const Sidebar: FC<PlasmoCSUIProps> = () => {
                   user_id={item.user_id}
                   username={item.username}
                   user_avatar={item.user_avatar}
-                  created_at={formatDate(item.created_at, item.is_edited)}
+                  created_at={item.created_at}
+                  isEdited={item.is_edited}
                   comment={item.comment}
                 />
               )
